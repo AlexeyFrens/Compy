@@ -9,42 +9,22 @@ import SwiftUI
 
 struct OnBoardingScreen1: View {
     var body: some View {
-        VStack {
-            Image(.monitorOnBoarding)
-                .overlay(
-                    VStack {
-                        Text("Olá, eu sou o Compy!")
-                            .font(.system(size: 36, weight: .bold))
-                            .foregroundStyle(.textos)
-                        
-                        Spacer()
-                        
-                        Image(.compyMascote)
-                        
-                        Spacer()
-                        
-                        ZStack {
-                            Text("1/9")
-                                .font(.system(size: 12))
-                                .foregroundStyle(.textos)
-                            
-                            NavigationButton(turnTo: "right")
-                                .frame(maxWidth: .infinity, alignment: .trailing)
-                        }
-                    }
-                        .padding(50)
-                )
+        OnBoardingEnvironment(hasCompyMascot: false) {
+            VStack {
+                Text("Olá, eu sou o Compy!")
+                    .font(.system(size: 36, weight: .bold))
+                    .foregroundStyle(.textos)
+                
+                Spacer()
+                
+                Image(.compyMascote)
+                
+                Spacer()
+                
+                NavigationButtonContainer(hasTwoButtons: false)
+            }
+            .padding(50)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
-        .background(.fundoParede)
-        .ignoresSafeArea()
-        .overlay(
-            SkipButton()
-                .padding(.top, 40)
-                .padding(.trailing, 40)
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                .ignoresSafeArea()
-        )
     }
 }
 

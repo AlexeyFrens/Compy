@@ -15,7 +15,7 @@ struct NavigationButton: View {
         Button(action: {}, label: {
             Image(systemName: turnTo == "right" ? "arrow.right" : "arrow.left")
                 .foregroundStyle(.fundoMonitor)
-                .font(.system(size: 24, weight: .black))
+                .font(.system(size: 20, weight: .black))
         })
         .padding(.horizontal, 24)
         .padding(.vertical, 10)
