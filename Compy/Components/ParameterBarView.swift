@@ -9,7 +9,11 @@ struct ParameterBarView: View{
     var barra : ParameterBarViewModel
     var body: some View{
         HStack{
-            
+            Text( barra.pecas[0].pieceName)
         }
     }
+}
+
+#Preview {
+    ParameterBarView(barra: ParameterBarViewModel())
 }
