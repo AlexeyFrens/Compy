@@ -10,6 +10,7 @@ import SwiftUI
 struct OnBoardingEnvironment<Content: View>: View {
     
     var hasCompyMascot: Bool? = true
+    var hasSkipButton: Bool? = true
     @ViewBuilder let monitorContent: Content
     
     var body: some View {
@@ -24,13 +25,15 @@ struct OnBoardingEnvironment<Content: View>: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                 .background(.fundoParede)
                 .ignoresSafeArea()
-                .overlay(
-                    SkipButton()
-                        .padding(.top, 40)
-                        .padding(.trailing, 40)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                        .ignoresSafeArea()
-                )
+                .overlay{
+                    if hasSkipButton! {
+                        SkipButton()
+                            .padding(.top, 40)
+                            .padding(.trailing, 40)
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                            .ignoresSafeArea()
+                    }
+                }
                 
                 Image(.compyMascote)
                     .padding(.leading, 20)
@@ -48,13 +51,15 @@ struct OnBoardingEnvironment<Content: View>: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .background(.fundoParede)
             .ignoresSafeArea()
-            .overlay(
-                SkipButton()
-                    .padding(.top, 40)
-                    .padding(.trailing, 40)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                    .ignoresSafeArea()
-            )
+            .overlay{
+                if hasSkipButton! {
+                    SkipButton()
+                        .padding(.top, 40)
+                        .padding(.trailing, 40)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
+                        .ignoresSafeArea()
+                }
+            }
         }
     }
 }
