@@ -10,6 +10,7 @@ import SwiftUI
 struct NavigationButtonContainer: View {
     
     var hasTwoButtons: Bool? = true
+    var pageNumber: String
     
     var body: some View {
         if hasTwoButtons! {
@@ -18,7 +19,7 @@ struct NavigationButtonContainer: View {
                 
                 Spacer()
                 
-                Text("1/9")
+                Text(pageNumber)
                     .font(.system(size: 12))
                     .foregroundStyle(.textos)
                 
@@ -29,7 +30,7 @@ struct NavigationButtonContainer: View {
         }
         else {
             ZStack {
-                Text("1/9")
+                Text(pageNumber)
                     .font(.system(size: 12))
                     .foregroundStyle(.textos)
                 
