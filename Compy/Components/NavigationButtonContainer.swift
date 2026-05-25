@@ -20,7 +20,7 @@ struct NavigationButtonContainer: View {
                 Spacer()
                 
                 Text(pageNumber)
-                    .font(.system(size: 12))
+                    .font(Font.custom("IosevkaCharon-Regular", size: 12))
                     .foregroundStyle(.textos)
                 
                 Spacer()
