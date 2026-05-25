@@ -39,6 +39,7 @@ class ParameterBarViewModel : ObservableObject{
             ),
         ]
     func incrementar(pecaIndex: Int, SpecIndex: Int){
+        
         pecas[pecaIndex].dropDown[SpecIndex].quantity += 1
     }
     func decrementar(pecaIndex: Int, SpecIndex: Int){
