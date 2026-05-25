@@ -32,7 +32,8 @@ struct ContentView: View {
                     .frame(width: 255, height: 155)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
-            .padding()
+            .padding(.leading, 100)
+            .ignoresSafeArea()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.fundoEscuro)
