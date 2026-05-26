@@ -6,6 +6,7 @@
 //
 
 import Observation
+import SwiftUI
 
 @Observable
 class ComponentViewModel {
@@ -19,7 +20,7 @@ class ComponentViewModel {
                 SpecificationModel(name: "Frequência", quantity: 0, un:"GHz"),
                 SpecificationModel(name: "Núcleos", quantity: 0, un: "")
             ],
-            about: "O processador é o cérebro do computador. Ele é responsável por processar informações, executar cálculos, interpretar comandos e fazer os programas funcionarem. \n\nA velocidade do processador determina a rapidez com que ele executa tarefas e processa informações. Quanto mais rápido ele for, menos tempo você passa esperando programas abrirem. \n\nOs núcleos funcionam como “mini processadores” dentro do processador principal. Quanto mais núcleos ele tiver, mais tarefas consegue executar ao mesmo tempo."
+            about: "O processador é o cérebro do computador. Ele é responsável por processar informações, executar cálculos, interpretar comandos e fazer os programas funcionarem. \n\nA velocidade do processador determina /Users/andre/Desktop/Compy/Compy/ViewModels/ComponentViewModel.swifta rapidez com que ele executa tarefas e processa informações. Quanto mais rápido ele for, menos tempo você passa esperando programas abrirem. \n\nOs núcleos funcionam como “mini processadores” dentro do processador principal. Quanto mais núcleos ele tiver, mais tarefas consegue executar ao mesmo tempo."
         ),
         ParameterBarModel(
             pieceName: "Placa de Vídeo",

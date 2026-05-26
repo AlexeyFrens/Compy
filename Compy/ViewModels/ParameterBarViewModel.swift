@@ -8,165 +8,179 @@
 import SwiftUI
 import Observation
 
+
 @Observable
 class ParameterBarViewModel {
+    var componentViewModel: ComponentViewModel  // recebido de fora
     
-    @State var componentViewModel = ComponentViewModel()
-    
+    init(componentViewModel: ComponentViewModel) {
+        self.componentViewModel = componentViewModel
+    }
     var index = 0
-    
-    
-    //Função para incrementar cada item separadamente
-    func incrementar(pecaIndex: Int, SpecIndex: Int){
-        
-        switch pecaIndex{
-          //Incremetar Processador
-        case 0:
-            let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
-            if valorAtual == 0{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 1.2
-            } else if valorAtual < 4.8 {
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
-            }else{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-            }
-            break
-            //--------------------
-            //Incrementar Placa de Vídeo
-        case 1:
-            let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
-            if valorAtual == 0{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 6
-            } else if valorAtual < 24 {
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
-            }else{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-            }
-            break
-            //---------------------
-            //Incrementar armazenamento
-        case 2:
-            let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
-            if valorAtual == 0{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 256
-                print( "Iniciou o valor com 2")
-            }else if valorAtual < 1024{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
-                print("\(valorAtual) foi multiplicado por 2")
-            }else{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-                print("Zerou o contador")
-            }
-            //---------------------
-            //Incrementar Memória RAM
-        case 3:
-            let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
-            if valorAtual == 0{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 4
-                print( "Iniciou o valor com 2")
-            }else if valorAtual < 64{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
-                print("\(valorAtual) foi multiplicado por 2")
-            }else{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-                print("Zerou o contador")
-            }
-            break
-            //---------------------
-            //Incrementar Fonte
-        case 4:
-            let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
-            
-            if valorAtual < 1000 {
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity += 100
-            }else{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-            }
-            break
-            //---------------------
-        default:
-            componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity += 1
-            print("Conseguiu Incrementar")
+    var SpecIndex = 0
+    var PecaIndex = 0
+        func avancar() {
+            SpecIndex = 0
+            PecaIndex = PecaIndex >= componentViewModel.pecas.count - 1 ? 0 : PecaIndex + 1
         }
-        
-        //        if pecaIndex == 3{
-        //            var valorAtual = pecas[pecaIndex].dropDown[SpecIndex].quantity
-        //            if valorAtual == 0{
-        //                pecas[pecaIndex].dropDown[SpecIndex].quantity = 2
-        //                print( "Iniciou o valor com 2")
-        //            }else if valorAtual < 256{
-        //                pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
-        //                print("\(valorAtual) foi multiplicado por 2")
-        //            }else{
-        //                pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-        //                print("Zerou o contador")
-        //            }
-        //        }else{
-        //            pecas[pecaIndex].dropDown[SpecIndex].quantity += 1
-        //            print("Conseguiu Incrementar")
-        //
-        //        }
-        
+    func voltar() {
+        SpecIndex = 0
+        PecaIndex = PecaIndex <= 0 ? componentViewModel.pecas.count - 1 : PecaIndex - 1
     }
-    func decrementar(pecaIndex: Int, SpecIndex: Int){
-        
-        switch pecaIndex{
-           //Decrementar Processador
-        case 0:
-            let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
-            if valorAtual == 2{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-            } else if valorAtual <= Double.infinity {
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity /= 2
+            //Função para incrementar cada item separadamente
+            func incrementar(pecaIndex: Int, SpecIndex: Int){
+                
+                switch pecaIndex{
+                    //Incremetar Processador
+                case 0:
+                    let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
+                    if valorAtual == 0{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 1.2
+                       
+                    } else if valorAtual < 4.8 {
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
+                    }else{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+                    }
+                    break
+                    //--------------------
+                    //Incrementar Placa de Vídeo
+                case 1:
+                    let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
+                    if valorAtual == 0{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 6
+                    } else if valorAtual < 24 {
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
+                    }else{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+                    }
+                    break
+                    //---------------------
+                    //Incrementar armazenamento
+                case 2:
+                    let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
+                    if valorAtual == 0{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 256
+                        print( "Iniciou o valor com 2")
+                    }else if valorAtual < 1024{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
+                        print("\(valorAtual) foi multiplicado por 2")
+                    }else{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+                        print("Zerou o contador")
+                    }
+                    //---------------------
+                    //Incrementar Memória RAM
+                case 3:
+                    let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
+                    if valorAtual == 0{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 4
+                        print( "Iniciou o valor com 4")
+                    }else if valorAtual < 64{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
+                        print("\(valorAtual) foi multiplicado por 2")
+                    }else{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+                        print("Zerou o contador")
+                    }
+                    break
+                    //---------------------
+                    //Incrementar Fonte
+                case 4:
+                    let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
+                    
+                    if valorAtual < 1000 {
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity += 100
+                    }else{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+                    }
+                    break
+                    //---------------------
+                default:
+                    componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity += 1
+                    print("Conseguiu Incrementar")
+                }
+                
+                //        if pecaIndex == 3{
+                //            var valorAtual = pecas[pecaIndex].dropDown[SpecIndex].quantity
+                //            if valorAtual == 0{
+                //                pecas[pecaIndex].dropDown[SpecIndex].quantity = 2
+                //                print( "Iniciou o valor com 2")
+                //            }else if valorAtual < 256{
+                //                pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
+                //                print("\(valorAtual) foi multiplicado por 2")
+                //            }else{
+                //                pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+                //                print("Zerou o contador")
+                //            }
+                //        }else{
+                //            pecas[pecaIndex].dropDown[SpecIndex].quantity += 1
+                //            print("Conseguiu Incrementar")
+                //
+                //        }
+                
             }
-            break
-            //---------------------
-            //Decrementar Placa de vídeo
-        case 1:
-            let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
-            
-            if valorAtual == 2{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+            func decrementar(pecaIndex: Int, SpecIndex: Int){
+                
+                switch pecaIndex{
+                    //Decrementar Processador
+                case 0:
+                    let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
+                    if valorAtual == 2{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+                    } else if valorAtual <= Double.infinity {
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity /= 2
+                    }
+                    break
+                    //---------------------
+                    //Decrementar Placa de vídeo
+                case 1:
+                    let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
+                    
+                    if valorAtual == 2{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+                    }
+                    else if valorAtual > 0 {
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity /= 2
+                    }else{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+                    }
+                    break
+                    //---------------------
+                    //Decrementar Armazenamento
+                case 2:
+                    let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
+                    if valorAtual == 128{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+                    } else if valorAtual <= Double.infinity {
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity /= 2
+                    }
+                    break
+                    //---------------------
+                    //Decrementar Memória RAM
+                case 3:
+                    let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
+                    if valorAtual == 4{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+                    } else if valorAtual <= Double.infinity {
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity /= 2
+                    }
+                    break
+                    //---------------------
+                    //Decrementar Fonte
+                case 4:
+                    let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
+                    
+                    if valorAtual < 1000 {
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity += 100
+                    }else{
+                        componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
+                    }
+                    //---------------------
+                default:
+                    print("Oi do deco")
+                }
             }
-            else if valorAtual > 0 {
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity /= 2
-            }else{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-            }
-            break
-            //---------------------
-            //Decrementar Armazenamento
-        case 2:
-            let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
-            if valorAtual == 128{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-            } else if valorAtual <= Double.infinity {
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity /= 2
-            }
-            break
-            //---------------------
-            //Decrementar Memória RAM
-        case 3:
-            let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
-            if valorAtual == 4{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-            } else if valorAtual <= Double.infinity {
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity /= 2
-            }
-            break
-            //---------------------
-            //Decrementar Fonte
-        case 4:
-            let valorAtual = componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity
-            
-            if valorAtual < 1000 {
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity += 100
-            }else{
-                componentViewModel.pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-            }
-            //---------------------
-        default:
-            print("Oi do deco")
         }
-    }
-}
+    
+

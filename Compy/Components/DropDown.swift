@@ -7,51 +7,67 @@
 import SwiftUI
 
 struct DropDown: View {
-    @ObservedObject var barra : ParameterBarViewModel
-    @State var indexPiece = 0
+    @Environment(ComponentViewModel.self) var component
+    @Environment(ParameterBarViewModel.self) var barra
+//    @State var indexPiece = 0
     @State var isActive = false
-    @State var buttonIsAlive = true
-    @Binding var index : Int
+//    @State var buttonIsAlive = true
     var body: some View {
         VStack(spacing: 0) {
-            if buttonIsAlive{
-                Button(action: {
-//                    buttonIsAlive.toggle()
+            Button{
+                //                    buttonIsAlive.toggle()
+                withAnimation(.bouncy){
                     isActive.toggle()
-                }) {
-                    Text(barra.pecas[index].dropDown[indexPiece].name)
-                    Image(systemName: isActive == false ? "chevron.up" : "chevron.down")
                 }
-               
-                .padding(.horizontal,25)
-                .padding(.vertical,2.5)
-                .background(Color.accent)
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-                .foregroundStyle(Color.fundoMonitor)
-                .font(Font.custom("IosevkaCharon-Bold", size: 14))
+            }label:{
+                Text(component.pecas[barra.PecaIndex].dropDown[barra.SpecIndex].name)
+                Image(systemName: "chevron.up")
             }
-            
-            if isActive {
-                
-                VStack {
-                    let specifications = barra.pecas[index].dropDown
-                    ForEach(0..<specifications.count, id: \.self) { i in
-                        Button(action: {
-                            indexPiece = i
-                            barra.index = i
-                            isActive = false
-//                            buttonIsAlive.toggle()
-                        }) {
-                            Text(specifications[i].name)
-                              
+            .padding(.horizontal,25)
+            .padding(.vertical,2.5)
+//            .background(Color.accent)
+            .glassEffect()
+            .clipShape(RoundedRectangle(cornerRadius: 5))
+            .foregroundStyle(Color.black)
+            .font(Font.custom("IosevkaCharon-Bold", size: 14))
+            .overlay{
+                if isActive {
+                    
+                    VStack {
+                        let specifications = component.pecas[barra.PecaIndex].dropDown
+                        ForEach(0..<specifications.count, id: \.self) { i in
+                            Button(action: {
+                                withAnimation(.bouncy){
+                                    barra.SpecIndex = i
+                                    isActive = false
+                                    //                            buttonIsAlive.toggle()
+                                }
+                            }) {
+                                Text(specifications[i].name)
+                                    .foregroundStyle(Color.black)
+                            }
+                            if i == 0{
+                                Divider()
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.horizontal)
+                                    .background(Color.white)
+                            }
                         }
+                    }
+                    .padding(.horizontal,10)
+                    .padding(.vertical)
+                    .glassEffect()
+                    .zIndex(999)
+                    .onChange(of: barra.PecaIndex) {
+                        isActive = false
                     }
                 }
             }
         }
-        .onChange(of: index) {
-            indexPiece = 0
-            isActive = false
+            
+           
+            
         }
+        
     }
-}
+
