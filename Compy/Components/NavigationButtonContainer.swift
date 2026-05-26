@@ -11,6 +11,7 @@ struct NavigationButtonContainer: View {
     
     var hasTwoButtons: Bool? = true
     var pageNumber: String
+    var totalPages: String?
     
     var body: some View {
         if hasTwoButtons! {
@@ -19,7 +20,7 @@ struct NavigationButtonContainer: View {
                 
                 Spacer()
                 
-                Text(pageNumber)
+                Text("\(pageNumber)/\(totalPages ?? "9")")
                     .font(Font.custom("IosevkaCharon-Regular", size: 12))
                     .foregroundStyle(.textos)
                 
@@ -30,7 +31,7 @@ struct NavigationButtonContainer: View {
         }
         else {
             ZStack {
-                Text(pageNumber)
+                Text("\(pageNumber)/\(totalPages ?? "9")")
                     .font(.system(size: 12))
                     .foregroundStyle(.textos)
                 

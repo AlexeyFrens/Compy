@@ -25,7 +25,7 @@ struct OnBoardingScreen8: View {
                 
                 Spacer()
                 
-                NavigationButtonContainer(pageNumber: "8/9")
+                NavigationButtonContainer(pageNumber: "8")
             }
             .padding(50)
         }

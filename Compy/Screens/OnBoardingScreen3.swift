@@ -30,7 +30,7 @@ struct OnBoardingScreen3: View {
                             Image(.monitorAmbienteOnBoarding)
                         }
                         
-                        NavigationButtonContainer(pageNumber: "3/9")
+                        NavigationButtonContainer(pageNumber: "3")
                             .padding(.horizontal, 25)
                     }
                 }

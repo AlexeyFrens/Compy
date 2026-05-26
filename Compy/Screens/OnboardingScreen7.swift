@@ -31,7 +31,7 @@ struct OnboardingScreen7: View {
                         .frame(width: 280, height: 150)
                     
                 }
-                NavigationButtonContainer(pageNumber:"7/9")
+                NavigationButtonContainer(pageNumber:"7")
                 
                 Spacer()
             }

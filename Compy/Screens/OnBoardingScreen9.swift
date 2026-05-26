@@ -16,7 +16,7 @@ struct OnBoardingScreen9: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(
-                NavigationButtonContainer(pageNumber: "9/9")
+                NavigationButtonContainer(pageNumber: "9")
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     .ignoresSafeArea()
                     .padding(50)
