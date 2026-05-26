@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct OnBoardingScreen9: View {
+    
+    var pageNumber: String? = "9"
+    var totalPages: String?
+    
     var body: some View {
         OnBoardingEnvironment(hasSkipButton: false) {
             VStack {
@@ -16,7 +20,7 @@ struct OnBoardingScreen9: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(
-                NavigationButtonContainer(pageNumber: "9")
+                NavigationButtonContainer(pageNumber: pageNumber!)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     .ignoresSafeArea()
                     .padding(50)
