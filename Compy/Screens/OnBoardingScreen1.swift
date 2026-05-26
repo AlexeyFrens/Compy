@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct OnBoardingScreen1: View {
+    
+    var pageNumber: String? = "1"
+    var totalPages: String?
+    
     var body: some View {
         OnBoardingEnvironment(hasCompyMascot: false) {
             VStack {
@@ -21,7 +25,7 @@ struct OnBoardingScreen1: View {
                 
                 Spacer()
                 
-                NavigationButtonContainer(hasTwoButtons: false, pageNumber: "1")
+                NavigationButtonContainer(hasTwoButtons: false, pageNumber: pageNumber!)
             }
             .padding(50)
         }
