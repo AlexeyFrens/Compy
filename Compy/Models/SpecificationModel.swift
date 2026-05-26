@@ -5,7 +5,8 @@
 //  Created by Andre on 25/05/26.
 //
 
-struct SpecificationModel{
+struct SpecificationModel : Hashable{
     var name: String
     var quantity: Int
+    var un : String
 }
