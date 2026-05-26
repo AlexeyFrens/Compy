@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct CompyApp: App {
+    
+    @State private var componentViewModel = ComponentViewModel()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
+        .environment(componentViewModel)
     }
 }
