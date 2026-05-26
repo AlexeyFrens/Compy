@@ -14,14 +14,14 @@ class ParameterBarViewModel : ObservableObject{
     @Published var pecas: [ParameterBarModel] = [
         ParameterBarModel(pieceName: "Processador", dropDown:
                             [
-                                SpecificationModel(name: "Frequência", quantity: 0, un:"MHz"),
+                                SpecificationModel(name: "Frequência", quantity: 0, un:"GHz"),
                                 SpecificationModel(name: "Núcleos", quantity: 0, un:"")
                             ]
                          ),
         ParameterBarModel(pieceName: "Placa de Vídeo", dropDown:
                             [
                                 SpecificationModel(name: "Núcleos", quantity: 0, un:""),
-                                SpecificationModel(name: "VRAM", quantity: 0, un:"MHz")
+                                SpecificationModel(name: "VRAM", quantity: 0, un:"GHz")
                             ]
                          ),
         ParameterBarModel(pieceName: "Armazenamento", dropDown:
@@ -48,8 +48,8 @@ class ParameterBarViewModel : ObservableObject{
         case 0:
             let valorAtual = pecas[pecaIndex].dropDown[SpecIndex].quantity
             if valorAtual == 0{
-                pecas[pecaIndex].dropDown[SpecIndex].quantity = 2
-            } else if valorAtual < 32 {
+                pecas[pecaIndex].dropDown[SpecIndex].quantity = 1.2
+            } else if valorAtual < 4.8 {
                 pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
             }else{
                 pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
@@ -60,8 +60,8 @@ class ParameterBarViewModel : ObservableObject{
         case 1:
             let valorAtual = pecas[pecaIndex].dropDown[SpecIndex].quantity
             if valorAtual == 0{
-                pecas[pecaIndex].dropDown[SpecIndex].quantity = 2
-            } else if valorAtual < 32 {
+                pecas[pecaIndex].dropDown[SpecIndex].quantity = 6
+            } else if valorAtual < 24 {
                 pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
             }else{
                 pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
@@ -72,9 +72,9 @@ class ParameterBarViewModel : ObservableObject{
         case 2:
             let valorAtual = pecas[pecaIndex].dropDown[SpecIndex].quantity
             if valorAtual == 0{
-                pecas[pecaIndex].dropDown[SpecIndex].quantity = 128
+                pecas[pecaIndex].dropDown[SpecIndex].quantity = 256
                 print( "Iniciou o valor com 2")
-            }else if valorAtual < 2048{
+            }else if valorAtual < 1024{
                 pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
                 print("\(valorAtual) foi multiplicado por 2")
             }else{
@@ -88,7 +88,7 @@ class ParameterBarViewModel : ObservableObject{
             if valorAtual == 0{
                 pecas[pecaIndex].dropDown[SpecIndex].quantity = 4
                 print( "Iniciou o valor com 2")
-            }else if valorAtual < 256{
+            }else if valorAtual < 64{
                 pecas[pecaIndex].dropDown[SpecIndex].quantity *= 2
                 print("\(valorAtual) foi multiplicado por 2")
             }else{
@@ -140,7 +140,7 @@ class ParameterBarViewModel : ObservableObject{
             let valorAtual = pecas[pecaIndex].dropDown[SpecIndex].quantity
             if valorAtual == 2{
                 pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-            } else if valorAtual <= Int.max {
+            } else if valorAtual <= Double.infinity {
                 pecas[pecaIndex].dropDown[SpecIndex].quantity /= 2
             }
             break
@@ -164,7 +164,7 @@ class ParameterBarViewModel : ObservableObject{
             let valorAtual = pecas[pecaIndex].dropDown[SpecIndex].quantity
             if valorAtual == 128{
                 pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-            } else if valorAtual <= Int.max {
+            } else if valorAtual <= Double.infinity {
                 pecas[pecaIndex].dropDown[SpecIndex].quantity /= 2
             }
             break
@@ -174,7 +174,7 @@ class ParameterBarViewModel : ObservableObject{
             let valorAtual = pecas[pecaIndex].dropDown[SpecIndex].quantity
             if valorAtual == 4{
                 pecas[pecaIndex].dropDown[SpecIndex].quantity = 0
-            } else if valorAtual <= Int.max {
+            } else if valorAtual <= Double.infinity {
                 pecas[pecaIndex].dropDown[SpecIndex].quantity /= 2
             }
             break

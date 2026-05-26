@@ -7,6 +7,6 @@
 
 struct SpecificationModel : Hashable{
     var name: String
-    var quantity: Int
+    var quantity: Double
     var un : String
 }
