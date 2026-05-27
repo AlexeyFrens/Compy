@@ -19,10 +19,11 @@ struct OnBoardingScreen9: View {
             VStack {
                 Text("Agora é com você!")
                     .font(Font.custom("IosevkaCharon-Bold", size: isIphone ? 36 : 64))
+                    .foregroundStyle(.textos)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(
-                NavigationButtonContainer(pageNumber: pageNumber!)
+                NavigationButtonContainer(pageNumber: pageNumber!,nextRoute: .screenOnboarding1)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     .ignoresSafeArea()
                     .padding(isIphone ? 50 : 100)

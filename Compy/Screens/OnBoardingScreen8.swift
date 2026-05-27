@@ -19,11 +19,13 @@ struct OnBoardingScreen8: View {
                 Text("Caso você se esqueça...")
                     .font(Font.custom("IosevkaCharon-Bold", size: isIphone ? 32 : 64))
                     .padding(.bottom, 5)
+                    .foregroundStyle(.textos)
                 
                 Text("Se tiver alguma dúvida e quiser rever esse passo a passo, toque no botão de tutorial e mostrarei ele novamente.")
                     .font(Font.custom("IosevkaCharon-Medium",size: isIphone ? 16 : 28))
                     .multilineTextAlignment(.center)
                     .padding(5)
+                    .foregroundStyle(.textos)
                 
                 Spacer()
                 
@@ -31,7 +33,7 @@ struct OnBoardingScreen8: View {
                 
                 Spacer()
                 
-                NavigationButtonContainer(pageNumber: pageNumber!)
+                NavigationButtonContainer(pageNumber: pageNumber!,nextRoute: .screenOnboarding9)
             }
             .padding(isIphone ? 50 : 100)
             .padding(.bottom, isIphone ? 0 : 80)

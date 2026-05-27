@@ -16,7 +16,6 @@ struct OnboardingScreen7: View {
     var body: some View {
         OnBoardingEnvironment {
             VStack {
-                
                 Text ("Personalize os componentes")
                     .font(Font.custom("IosevkaCharon-Bold", size: isIphone ? 32 : 64))
                     .foregroundStyle(.textos)
@@ -31,16 +30,15 @@ struct OnboardingScreen7: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .font(Font.custom("IosevkaCharon-Medium", size: isIphone ? 16 : 26))
                         .multilineTextAlignment(.center)
+                        .foregroundStyle(.textos)
                     
                     Spacer()
                     
                     Image(.onBoarding7)
                     
                 }
-                
+                NavigationButtonContainer(pageNumber: pageNumber!,nextRoute: .screenOnboarding8)
                 Spacer()
-                
-                NavigationButtonContainer(pageNumber: pageNumber!)
             }
             .padding(isIphone ? 50 : 100)
             .padding(.bottom, isIphone ? 0 : 80)

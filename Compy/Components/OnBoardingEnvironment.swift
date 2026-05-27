@@ -53,13 +53,19 @@ struct OnBoardingEnvironment<Content: View>: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .background(.fundoParede)
             .ignoresSafeArea()
+            .allowsTightening(false)
             .overlay{
                 if hasSkipButton! {
-                    SkipButton()
-                        .padding(.top, isIphone ? 40 : 20)
-                        .padding(.trailing, isIphone ? 40 : 50)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                        .ignoresSafeArea()
+                    VStack {
+                        HStack {
+                            Spacer()
+                            SkipButton()
+                                .padding(.top, isIphone ? 40 : 20)
+                                .padding(.trailing, isIphone ? 40 : 50)
+                        }
+                        Spacer()
+                    }
+                    .ignoresSafeArea()
                 }
             }
         }
