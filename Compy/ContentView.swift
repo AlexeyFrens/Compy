@@ -15,8 +15,8 @@ struct ContentView: View {
                     .imageScale(.large)
                 Button(action: {}, label: {
                     Text("Iniciar")
-                        .font(.system(size: 20, weight: .bold))
-                        .foregroundStyle(.fundoMonitor)
+                        .font(.custom("IosevkaCharon-Bold", size: 20))
+                        .foregroundStyle(.textos)
                 })
                 .padding(.horizontal, 30)
                 .padding(.vertical, 10)

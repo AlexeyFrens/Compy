@@ -12,7 +12,7 @@ struct SkipButton: View {
         Button(action: {}, label: {
             HStack {
                 Text("Pular")
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.custom("IosevkaCharon-Bold", size: 16))
                     .foregroundStyle(.textos)
                 Image(systemName: "chevron.right.2")
                     .foregroundStyle(.textos)

@@ -24,6 +24,7 @@ struct ParameterBarView: View {
                 }
                 
                 Text(component.pecas[component.parameterBar.PecaIndex].pieceName)
+                    .font(.custom("IosevkaCharon-Bold", size: 20))
                     .frame(width: 150)
                 
                 // Botão Direita
@@ -62,8 +63,9 @@ struct ParameterBarView: View {
             
             HStack(spacing: 5) {
                 Text(String(format: "%.1f", component.pecas[component.parameterBar.PecaIndex].dropDown[component.parameterBar.SpecIndex].quantity))
-                    .bold()
+                    .font(.custom("IosevkaCharon-Bold", size: 20))
                 Text(component.pecas[component.parameterBar.PecaIndex].dropDown[component.parameterBar.SpecIndex].un)
+                    .font(.custom("IosevkaCharon-Bold", size: 20))
             }
             .frame(width: 100)
             

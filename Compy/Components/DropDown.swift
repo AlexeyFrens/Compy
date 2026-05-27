@@ -27,7 +27,7 @@ struct DropDown: View {
 //            .background(Color.accent)
             .glassEffect()
             .clipShape(RoundedRectangle(cornerRadius: 5))
-            .foregroundStyle(Color.black)
+            .foregroundStyle(.textos)
             .font(Font.custom("IosevkaCharon-Bold", size: 14))
             .overlay{
                 if isActive {
@@ -43,7 +43,8 @@ struct DropDown: View {
                                 }
                             }) {
                                 Text(specifications[i].name)
-                                    .foregroundStyle(Color.black)
+                                    .font(.custom("IosevkaCharon-Bold", size: 14))
+                                    .foregroundStyle(.textos)
                             }
                             if i == 0{
                                 Divider()

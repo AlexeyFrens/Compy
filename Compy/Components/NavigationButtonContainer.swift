@@ -32,7 +32,7 @@ struct NavigationButtonContainer: View {
         else {
             ZStack {
                 Text("\(pageNumber)/\(totalPages ?? "9")")
-                    .font(.system(size: 12))
+                    .font(Font.custom("IosevkaCharon-Regular", size: 12))
                     .foregroundStyle(.textos)
                 
                 NavigationButton(turnTo: "right")
