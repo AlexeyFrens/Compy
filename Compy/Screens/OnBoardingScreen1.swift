@@ -26,7 +26,7 @@ struct OnBoardingScreen1: View {
                 
                 Spacer()
                 
-                NavigationButtonContainer(hasTwoButtons: false, pageNumber: pageNumber!)
+                NavigationButtonContainer(hasTwoButtons: false, pageNumber: pageNumber!,nextRoute: .screenOnboarding2)
             }
             .padding(isIphone ? 50 : 100)
             .padding(.bottom, isIphone ? 0 : 40)

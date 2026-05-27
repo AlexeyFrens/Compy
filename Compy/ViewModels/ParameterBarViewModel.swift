@@ -15,7 +15,7 @@ class ParameterBarViewModel {
     var index = 0
     var SpecIndex = 0
     var PecaIndex = 0
-    
+
     func avancar(totalPecas: Int) {
         SpecIndex = 0
         PecaIndex = PecaIndex >= totalPecas - 1 ? 0 : PecaIndex + 1
