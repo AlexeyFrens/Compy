@@ -13,6 +13,12 @@ class ComponentViewModel {
     
     var situationTextViewModel = SituationTextViewModel()
     
+    var parameterBar: ParameterBarViewModel
+    
+    init() {
+        self.parameterBar = ParameterBarViewModel()
+    }
+    
     var pecas: [ParameterBarModel] = [
         ParameterBarModel(
             pieceName: "Processador",

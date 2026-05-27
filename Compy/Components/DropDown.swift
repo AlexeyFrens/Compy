@@ -8,7 +8,6 @@ import SwiftUI
 
 struct DropDown: View {
     @Environment(ComponentViewModel.self) var component
-    @Environment(ParameterBarViewModel.self) var barra
 //    @State var indexPiece = 0
     @State var isActive = false
 //    @State var buttonIsAlive = true
@@ -20,7 +19,7 @@ struct DropDown: View {
                     isActive.toggle()
                 }
             }label:{
-                Text(component.pecas[barra.PecaIndex].dropDown[barra.SpecIndex].name)
+                Text(component.pecas[component.parameterBar.PecaIndex].dropDown[component.parameterBar.SpecIndex].name)
                 Image(systemName: "chevron.up")
             }
             .padding(.horizontal,25)
@@ -34,11 +33,11 @@ struct DropDown: View {
                 if isActive {
                     
                     VStack {
-                        let specifications = component.pecas[barra.PecaIndex].dropDown
+                        let specifications = component.pecas[component.parameterBar.PecaIndex].dropDown
                         ForEach(0..<specifications.count, id: \.self) { i in
                             Button(action: {
                                 withAnimation(.bouncy){
-                                    barra.SpecIndex = i
+                                    component.parameterBar.SpecIndex = i
                                     isActive = false
                                     //                            buttonIsAlive.toggle()
                                 }
@@ -58,7 +57,7 @@ struct DropDown: View {
                     .padding(.vertical)
                     .glassEffect()
                     .zIndex(999)
-                    .onChange(of: barra.PecaIndex) {
+                    .onChange(of: component.parameterBar.PecaIndex) {
                         isActive = false
                     }
                 }

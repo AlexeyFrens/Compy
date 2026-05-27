@@ -7,17 +7,15 @@
 import SwiftUI
 
 struct ParameterBarView: View {
-//    @State var barra = ParameterBarViewModel()
-    @Environment(ParameterBarViewModel.self) var barra
     @Environment(ComponentViewModel.self) var component
-   
+    
     var body: some View {
         HStack {
             // Botão Esquerda
             HStack{
                 Button(action: {
                     withAnimation(.smooth){
-                        barra.voltar()
+                        component.parameterBar.voltar(totalPecas: component.pecas.count)
                     }
                 }) {
                     Image(systemName: "arrowtriangle.backward.fill")
@@ -25,14 +23,14 @@ struct ParameterBarView: View {
                         .frame(width: 30, height: 30)
                 }
                 
-                Text(component.pecas[barra.PecaIndex].pieceName)
+                Text(component.pecas[component.parameterBar.PecaIndex].pieceName)
                     .frame(width: 150)
                 
                 // Botão Direita
                 
                 Button(action: {
                     withAnimation(.smooth){
-                        barra.avancar()
+                        component.parameterBar.avancar(totalPecas: component.pecas.count)
                     }
                 }) {
                     Image(systemName: "arrowtriangle.forward.fill")
@@ -44,17 +42,17 @@ struct ParameterBarView: View {
             Spacer()
             ZStack{
                 // Renderiza o dropdown apenas se houver mais de uma opção
-                if component.pecas[barra.PecaIndex].dropDown.count > 1 {
+                if component.pecas[component.parameterBar.PecaIndex].dropDown.count > 1 {
                     DropDown()
                 }
             }
-           
+            
             Spacer()
             // Botão Decrementar
             Button(action: {
                 withAnimation(.bouncy){
                     
-                    barra.decrementar(pecaIndex: barra.PecaIndex, SpecIndex: barra.SpecIndex)
+                    component.parameterBar.decrementar(componentViewModel: component)
                 }
             }) {
                 Image(systemName: "minus.square.fill")
@@ -63,15 +61,15 @@ struct ParameterBarView: View {
             }
             
             HStack(spacing: 5) {
-                Text(String(format: "%.1f", component.pecas[barra.PecaIndex].dropDown[barra.SpecIndex].quantity))
+                Text(String(format: "%.1f", component.pecas[component.parameterBar.PecaIndex].dropDown[component.parameterBar.SpecIndex].quantity))
                     .bold()
-                Text(component.pecas[barra.PecaIndex].dropDown[barra.SpecIndex].un)
+                Text(component.pecas[component.parameterBar.PecaIndex].dropDown[component.parameterBar.SpecIndex].un)
             }
             .frame(width: 100)
-    
+            
             Button(action: {
                 withAnimation(.bouncy){
-                    barra.incrementar(pecaIndex: barra.PecaIndex, SpecIndex: barra.SpecIndex)
+                    component.parameterBar.incrementar(componentViewModel: component)
                 }
             }) {
                 Image(systemName: "plus.square.fill")
@@ -81,17 +79,15 @@ struct ParameterBarView: View {
         }
         .frame(maxWidth: .infinity)
         .padding()
-
-//        .glassEffect(.regular.tint(.indigo))
+        
+        //        .glassEffect(.regular.tint(.indigo))
         .glassEffect()
-//        .environment(barra)
+        //        .environment(barra)
     }
 }
-        
+
 #Preview {
     let cvm = ComponentViewModel()
-        let bvm = ParameterBarViewModel(componentViewModel: cvm)
-        ParameterBarView()
-            .environment(cvm)
-            .environment(bvm)
+    ParameterBarView()
+        .environment(cvm)
 }
