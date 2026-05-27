@@ -10,12 +10,13 @@ import SwiftUI
 struct NavigationButton: View {
     
     var turnTo: String
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
     
     var body: some View {
         Button(action: {}, label: {
             Image(systemName: turnTo == "right" ? "arrow.right" : "arrow.left")
                 .foregroundStyle(.textos)
-                .font(.system(size: 20, weight: .black))
+                .font(.system(size: isIphone ? 20 : 40, weight: .black))
         })
         .padding(.horizontal, 24)
         .padding(.vertical, 10)

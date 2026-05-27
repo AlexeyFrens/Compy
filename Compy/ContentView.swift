@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
+    
     var body: some View {
         ZStack {
             VStack(spacing: 20) {
@@ -15,7 +18,7 @@ struct ContentView: View {
                     .imageScale(.large)
                 Button(action: {}, label: {
                     Text("Iniciar")
-                        .font(.custom("IosevkaCharon-Bold", size: 20))
+                        .font(.custom("IosevkaCharon-Bold", size: isIphone ? 20 : 30))
                         .foregroundStyle(.textos)
                 })
                 .padding(.horizontal, 30)
@@ -25,15 +28,24 @@ struct ContentView: View {
             }
             .padding()
             
-            HStack {
-                Image(.compyMascote)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 255, height: 155)
+            if isIphone {
+                HStack {
+                    Image(.compyMascote)
+                        .frame(width: 255, height: 155)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                .padding(.leading, 100)
+                .ignoresSafeArea()
+            } else {
+                HStack {
+                    Image(.compyMascote)
+                        .frame(width: 255, height: 155)
+                }
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
+                .padding(.leading, 100)
+                .padding(.bottom, 50)
+                .ignoresSafeArea()
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
-            .padding(.leading, 100)
-            .ignoresSafeArea()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.fundoEscuro)

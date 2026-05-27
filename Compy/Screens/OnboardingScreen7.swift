@@ -11,13 +11,14 @@ struct OnboardingScreen7: View {
     
     var pageNumber: String? = "7"
     var totalPages: String?
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
     
     var body: some View {
         OnBoardingEnvironment {
             VStack {
                 
                 Text ("Personalize os componentes")
-                    .font(Font.custom("IosevkaCharon-Bold", size: 32))
+                    .font(Font.custom("IosevkaCharon-Bold", size: isIphone ? 32 : 64))
                     .foregroundStyle(.textos)
                     .multilineTextAlignment(.center)
                     .padding(5)
@@ -28,18 +29,21 @@ struct OnboardingScreen7: View {
                     Text ("Para ver a configuração de todas as peças, basta tocar no ícone que estará do lado direito da tela e elas aparecerão no monitor.")
                         .lineLimit(nil)
                         .fixedSize(horizontal: false, vertical: true)
-                        .font(Font.custom("IosevkaCharon-Regular", size: 16))
+                        .font(Font.custom("IosevkaCharon-Medium", size: isIphone ? 16 : 26))
                         .multilineTextAlignment(.center)
                     
+                    Spacer()
+                    
                     Image(.onBoarding7)
-                        .frame(width: 280, height: 150)
                     
                 }
-                NavigationButtonContainer(pageNumber: pageNumber!)
                 
                 Spacer()
+                
+                NavigationButtonContainer(pageNumber: pageNumber!)
             }
-            .padding(49)
+            .padding(isIphone ? 50 : 100)
+            .padding(.bottom, isIphone ? 0 : 80)
         }
     }
 }

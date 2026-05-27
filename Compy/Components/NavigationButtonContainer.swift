@@ -12,6 +12,7 @@ struct NavigationButtonContainer: View {
     var hasTwoButtons: Bool? = true
     var pageNumber: String
     var totalPages: String?
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
     
     var body: some View {
         if hasTwoButtons! {
@@ -21,7 +22,7 @@ struct NavigationButtonContainer: View {
                 Spacer()
                 
                 Text("\(pageNumber)/\(totalPages ?? "9")")
-                    .font(Font.custom("IosevkaCharon-Regular", size: 12))
+                    .font(Font.custom("IosevkaCharon-Regular", size: isIphone ? 12 : 32))
                     .foregroundStyle(.textos)
                 
                 Spacer()
@@ -32,7 +33,7 @@ struct NavigationButtonContainer: View {
         else {
             ZStack {
                 Text("\(pageNumber)/\(totalPages ?? "9")")
-                    .font(Font.custom("IosevkaCharon-Regular", size: 12))
+                    .font(Font.custom("IosevkaCharon-Regular", size: isIphone ? 12 : 32))
                     .foregroundStyle(.textos)
                 
                 NavigationButton(turnTo: "right")

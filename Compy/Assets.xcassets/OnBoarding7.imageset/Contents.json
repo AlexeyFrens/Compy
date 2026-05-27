@@ -1,17 +1,26 @@
 {
   "images" : [
     {
-      "filename" : "Frame 110.svg",
-      "idiom" : "universal",
+      "filename" : "OnBoarding7.svg",
+      "idiom" : "iphone",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "3x"
+    },
+    {
+      "filename" : "Onboarding7Ipad.png",
+      "idiom" : "ipad",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "2x"
     }
   ],
   "info" : {

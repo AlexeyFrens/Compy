@@ -11,12 +11,13 @@ struct OnBoardingScreen1: View {
     
     var pageNumber: String? = "1"
     var totalPages: String?
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
     
     var body: some View {
         OnBoardingEnvironment(hasCompyMascot: false) {
             VStack {
                 Text("Olá, eu sou o Compy!")
-                    .font(Font.custom("IosevkaCharon-Bold", size: 36))
+                    .font(Font.custom("IosevkaCharon-Bold", size: isIphone ? 36 : 64))
                     .foregroundStyle(.textos)
                 
                 Spacer()
@@ -27,7 +28,8 @@ struct OnBoardingScreen1: View {
                 
                 NavigationButtonContainer(hasTwoButtons: false, pageNumber: pageNumber!)
             }
-            .padding(50)
+            .padding(isIphone ? 50 : 100)
+            .padding(.bottom, isIphone ? 0 : 40)
         }
     }
 }

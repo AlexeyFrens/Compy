@@ -11,16 +11,18 @@ struct OnBoardingScreen3: View {
     
     var pageNumber: String? = "3"
     var totalPages: String?
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
     
     var body: some View {
-        OnBoardingEnvironment {
+        OnBoardingEnvironment(hasCompyMascot: isIphone ? true : false) {
             VStack {
                 Text("Este será o seu ambiente:")
-                    .font(Font.custom("IosevkaCharon-Bold", size: 32))
-                    .padding(.bottom, 5)
+                    .font(Font.custom("IosevkaCharon-Bold", size: isIphone ? 32 : 64))
+                    .foregroundStyle(.textos)
                 
                 Text("Ele é composto pelo gabinete e pelo monitor")
-                    .font(Font.custom("IosevkaCharon-Regular",size: 16))
+                    .font(Font.custom("IosevkaCharon-Medium",size: isIphone ? 16 : 26))
+                    .foregroundStyle(.textos)
                 
                 Spacer()
                 
@@ -40,7 +42,8 @@ struct OnBoardingScreen3: View {
                 }
                 .padding(.bottom, -10)
             }
-            .padding(40)
+            .padding(isIphone ? 40 : 80)
+            .padding(.bottom, isIphone ? 0 : 15)
         }
     }
 }

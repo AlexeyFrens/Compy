@@ -11,6 +11,7 @@ struct OnBoardingScreen6: View {
     
     var pageNumber: String? = "6"
     var totalPages: String?
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
     
     var body: some View {
         OnBoardingEnvironment {
@@ -19,13 +20,15 @@ struct OnBoardingScreen6: View {
                 Spacer()
                 
                 Text ("Personalize os componentes")
-                    .font(Font.custom("IosevkaCharon-Bold", size: 32))
+                    .font(Font.custom("IosevkaCharon-Bold", size: isIphone ? 32 : 64))
                     .foregroundStyle(.textos)
                     .multilineTextAlignment(.center)
                     .padding(5)
                 
+                Spacer()
+                
                 Text ("Cada componente possui especificações e você poderá alterá-las na barra do exemplo abaixo:")
-                    .font(Font.custom("IosevkaCharon-Regular",size: 16))
+                    .font(Font.custom("IosevkaCharon-Medium",size: isIphone ? 16 : 26))
                     .foregroundStyle(.textos)
                     .multilineTextAlignment(.center)
                     .padding(5)
@@ -38,7 +41,8 @@ struct OnBoardingScreen6: View {
                 
               NavigationButtonContainer(pageNumber: pageNumber!)
             }
-            .padding(50)
+            .padding(isIphone ? 50 : 100)
+            .padding(.bottom, isIphone ? 0 : 80)
         }
     }
 }

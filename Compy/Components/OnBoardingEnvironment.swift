@@ -13,6 +13,8 @@ struct OnBoardingEnvironment<Content: View>: View {
     var hasSkipButton: Bool? = true
     @ViewBuilder let monitorContent: Content
     
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
+    
     var body: some View {
         if hasCompyMascot! {
             ZStack {
@@ -28,14 +30,14 @@ struct OnBoardingEnvironment<Content: View>: View {
                 .overlay{
                     if hasSkipButton! {
                         SkipButton()
-                            .padding(.top, 40)
-                            .padding(.trailing, 40)
+                            .padding(.top, isIphone ? 40 : 20)
+                            .padding(.trailing, isIphone ? 40 : 50)
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                             .ignoresSafeArea()
                     }
                 }
                 
-                Image(.compyMascote)
+                Image(isIphone ? .compyMascote : .compyIpadPequeno)
                     .padding(.leading, 20)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
                     .ignoresSafeArea()
@@ -54,8 +56,8 @@ struct OnBoardingEnvironment<Content: View>: View {
             .overlay{
                 if hasSkipButton! {
                     SkipButton()
-                        .padding(.top, 40)
-                        .padding(.trailing, 40)
+                        .padding(.top, isIphone ? 40 : 20)
+                        .padding(.trailing, isIphone ? 40 : 50)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                         .ignoresSafeArea()
                 }

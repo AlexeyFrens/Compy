@@ -11,15 +11,17 @@ struct OnBoardingScreen8: View {
     var pageNumber: String? = "8"
     var totalPages: String?
     
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
+    
     var body: some View {
         OnBoardingEnvironment{
             VStack{
                 Text("Caso você se esqueça...")
-                    .font(Font.custom("IosevkaCharon-Bold", size: 32))
+                    .font(Font.custom("IosevkaCharon-Bold", size: isIphone ? 32 : 64))
                     .padding(.bottom, 5)
                 
                 Text("Se tiver alguma dúvida e quiser rever esse passo a passo, toque no botão de tutorial e mostrarei ele novamente.")
-                    .font(Font.custom("IosevkaCharon-Regular",size: 16))
+                    .font(Font.custom("IosevkaCharon-Medium",size: isIphone ? 16 : 28))
                     .multilineTextAlignment(.center)
                     .padding(5)
                 
@@ -31,7 +33,8 @@ struct OnBoardingScreen8: View {
                 
                 NavigationButtonContainer(pageNumber: pageNumber!)
             }
-            .padding(50)
+            .padding(isIphone ? 50 : 100)
+            .padding(.bottom, isIphone ? 0 : 80)
         }
     }
 }
