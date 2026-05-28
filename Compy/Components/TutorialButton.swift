@@ -17,7 +17,7 @@ struct TutorialButton: View {
         Button(action: {
             routerNavigation.push(to: .screenOnboarding4(isTutorial: true))
         }) {
-            Image(.compyTutorialImg)
+            Image(.compyTutorialButton)
         }
     }
 }

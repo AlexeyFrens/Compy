@@ -20,7 +20,7 @@ struct MainScreen: View {
                 Color("FundoParede")
                     .ignoresSafeArea()
                 
-                Image("AmbienteDeInteracao")
+                Image(.ambienteDeInteracao)
                     .resizable()
                     .ignoresSafeArea(edges: .all)
                 
@@ -40,8 +40,8 @@ struct MainScreen: View {
                 
                 //botão do tutorial fica no canto da tela
                 TutorialButton()
-                    .padding(.top, 18)
-                    .padding(.trailing, 24)
+                    .padding(.top, 20)
+                    .padding(.trailing, 40)
             }
         }
         .ignoresSafeArea()
