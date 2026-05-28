@@ -86,7 +86,8 @@ struct ParameterBarView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .padding()
+        .padding(.vertical)
+        .padding(.horizontal,50)
         
         //        .glassEffect(.regular.tint(.indigo))
         .glassEffect()

@@ -8,15 +8,13 @@ import SwiftUI
 struct MainScreen: View {
     
     @Environment(ComponentViewModel.self) var component
-    
-    //detecta o tipo de tela: .compact p/ iPhone ou .regular p/ iPad
     @Environment(\.horizontalSizeClass) var sizeClass
     
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .topTrailing) {
                 
-                //cor de fundo da tela
+                // Cor de fundo da tela
                 Color("FundoParede")
                     .ignoresSafeArea()
                 
@@ -29,16 +27,40 @@ struct MainScreen: View {
                     Gabinete()
                         .frame(width: geometry.size.width * 0.28)
                     
-                    Image("MonitorVazio")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: geometry.size.width * 0.405)
+                    // SOLUÇÃO: VStack com Spacer absorve o espaço fantasma do HStack
+                    VStack(spacing: 0) {
+                        Spacer(minLength: 0) // Empurra o monitor para baixo
+                        
+                        Image("MonitorVazio")
+                            .resizable()
+                            .scaledToFit()
+                            .overlay(
+                                GeometryReader { monitorGeom in
+                                    MonitorMainScreen()
+                                        // Mantenha esses valores ou ajuste minimamente no iPhone
+                                        .frame(
+                                            width: monitorGeom.size.width * 0.90,
+                                            height: monitorGeom.size.height * 0.70
+                                        )
+                                        .position(
+                                            x: monitorGeom.size.width / 2,
+                                            y: monitorGeom.size.height * 0.42
+                                        )
+                                        .clipped()
+                                }
+                            )
+                    }
+                    // A largura responsiva agora é aplicada no VStack inteiro
+                    .frame(width: geometry.size.width * (sizeClass == .compact ? 0.45 : 0.405))
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-                
                 .offset(y: geometry.size.height * (sizeClass == .compact ? -0.08 : -0.01))
                 
-                //botão do tutorial fica no canto da tela
+                // ParameterBarView posicionada livremente sem quebrar o HStack
+                ParameterBarView()
+                    .position(x: geometry.size.width / 2, y: geometry.size.height * 0.85)
+                
+                // Botão do tutorial fica no canto da tela
                 TutorialButton()
                     .padding(.top, 20)
                     .padding(.trailing, 40)
@@ -48,12 +70,8 @@ struct MainScreen: View {
     }
 }
 
-
-
 #Preview {
-    
     let cvm = ComponentViewModel()
-    
     MainScreen()
         .environment(cvm)
 }
