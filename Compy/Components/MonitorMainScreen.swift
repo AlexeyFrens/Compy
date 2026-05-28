@@ -13,6 +13,7 @@ struct MonitorMainScreen: View {
     @State private var buttonFocused = "Memória RAM"
     @State private var situationTextKey = ""
     @State private var componentSelected: ParameterBarModel?
+    @State private var specificationFocused = 0
     
     func getComponentSelected() -> ParameterBarModel {
         for component in componentViewModel.pecas {
@@ -24,19 +25,23 @@ struct MonitorMainScreen: View {
         return ParameterBarModel(pieceName: "", dropDown: [], about: "")
     }
     
-    func translateKey(word: String) -> String {
-        switch word {
-        case "Memória RAM":
+    func translateKey(componentName: String, specification: String) -> String {
+        
+        if componentName == "Memória RAM" {
             return "memory"
-        case "Placa de Vídeo":
+        } else if componentName == "Placa de Vídeo" && specification == "Núcleos" {
             return "videoCardClock"
-        case "Fonte":
+        } else if componentName == "Placa de Vídeo" && specification == "VRAM" {
+            return "videoCardVram"
+        } else if componentName == "Fonte" {
             return "powerSupply"
-        case "Armazenamento":
+        } else if componentName == "Armazenamento" {
             return "storage"
-        case "Processador":
+        } else if componentName == "Processador" && specification == "Frequência" {
+            return "processorSpeed"
+        } else if componentName == "Processador" && specification == "Núcleos" {
             return "processorCore"
-        default:
+        } else {
             return ""
         }
     }
@@ -49,6 +54,7 @@ struct MonitorMainScreen: View {
                         .foregroundStyle(.textos)
                     Text("Valores Gerais dos Componentes")
                         .font(.custom("IosevkaCharon-Bold", size: 16))
+                        .foregroundStyle(.textos)
                 }
                 .padding(.horizontal, 26)
                 .padding(.vertical, 8)
@@ -62,13 +68,16 @@ struct MonitorMainScreen: View {
                         ForEach(componentViewModel.pecas) { component in
                             VStack() {
                                 Button(action: {
-                                    buttonFocused = component.pieceName
-                                    componentSelected = component
+                                    withAnimation(.spring){
+                                        buttonFocused = component.pieceName
+                                        componentSelected = component
+                                    }
                                 }, label: {
                                     BotaoMonitorMainScreen(componentName: component.pieceName)
+                                        .padding()
+                                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                                 })
-                                .padding()
-                                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                                .clipShape(Rectangle())
                                 .background(buttonFocused == component.pieceName ? .accent : .fundoMonitor)
                                 .overlay(alignment: .bottom){
                                     if component.pieceName != "Processador" {
@@ -88,24 +97,99 @@ struct MonitorMainScreen: View {
                         .foregroundStyle(.variantes)
                     
                     VStack {
-                        HStack {
-                            Text(componentSelected?.dropDown[0].name ?? "")
-                                .font(.custom("IosevkaCharon-Bold", size: 12))
-                            Spacer()
+                        if componentSelected?.dropDown.count == 1 {
                             HStack {
-                                Text(componentSelected?.dropDown[0].quantity.formatted() ?? "")
+                                Text(componentSelected?.dropDown[0].name ?? "")
                                     .font(.custom("IosevkaCharon-Bold", size: 12))
-                                
-                                Text(componentSelected?.dropDown[0].un ?? "")
-                                    .font(.custom("IosevkaCharon-Bold", size: 12))
+                                    .foregroundStyle(.textos)
+                                Spacer()
+                                HStack {
+                                    Text(componentSelected?.dropDown[0].quantity.formatted() ?? "")
+                                        .font(.custom("IosevkaCharon-Bold", size: 12))
+                                        .foregroundStyle(.textos)
+                                    
+                                    Text(componentSelected?.dropDown[0].un ?? "")
+                                        .font(.custom("IosevkaCharon-Bold", size: 12))
+                                        .foregroundStyle(.textos)
+                                }
+                            }
+                        } else {
+                            HStack {
+                                Button(action: {
+                                    withAnimation(.spring) {
+                                        specificationFocused = 0
+                                    }
+                                }, label: {
+                                    VStack(spacing: 5) {
+                                        Text(componentSelected?.dropDown[0].name ?? "")
+                                            .font(.custom("IosevkaCharon-Bold", size: 12))
+                                            .foregroundStyle(.textos)
+                                        HStack {
+                                            Text(componentSelected?.dropDown[0].quantity.formatted() ?? "")
+                                                .font(.custom("IosevkaCharon-Bold", size: 12))
+                                                .foregroundStyle(.textos)
+                                            
+                                            Text(componentSelected?.dropDown[0].un ?? "")
+                                                .font(.custom("IosevkaCharon-Bold", size: 12))
+                                                .foregroundStyle(.textos)
+                                        }
+                                    }
+                                })
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 5)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .background(specificationFocused == 0 ? Color.accent : Color.clear)
+                                .cornerRadius(10)
+                                .overlay(
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .stroke(specificationFocused == 0 ? .clear : .variantes, lineWidth: 1)
+                                )
+
+                                Button(action: {
+                                    withAnimation(.spring) {
+                                        specificationFocused = 1
+                                    }
+                                }, label: {
+                                    VStack(spacing: 5) {
+                                        Text(componentSelected?.dropDown[1].name ?? "")
+                                            .font(.custom("IosevkaCharon-Bold", size: 12))
+                                            .foregroundStyle(.textos)
+                                        HStack {
+                                            Text(componentSelected?.dropDown[1].quantity.formatted() ?? "")
+                                                .font(.custom("IosevkaCharon-Bold", size: 12))
+                                                .foregroundStyle(.textos)
+                                            
+                                            Text(componentSelected?.dropDown[1].un ?? "")
+                                                .font(.custom("IosevkaCharon-Bold", size: 12))
+                                                .foregroundStyle(.textos)
+                                        }
+                                    }
+                                })
+                                .padding(.horizontal, 10)
+                                .padding(.vertical, 5)
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .background(specificationFocused == 1 ? Color.accent : Color.clear)
+                                .cornerRadius(10)
+                                .overlay(
+                                       RoundedRectangle(cornerRadius: 10)
+                                        .stroke(specificationFocused == 1 ? .clear : .variantes, lineWidth: 1)
+                                )
                             }
                         }
                         
                         Spacer()
                         
-                        Text(componentViewModel.getSituationText(key: translateKey(word: componentSelected?.pieceName ?? "")))
-                            .font(.custom("IosevkaCharon-Regular", size: 12))
-                            .multilineTextAlignment(.center)
+                        if componentSelected?.dropDown.count != 1 {
+                            Text(componentViewModel.getSituationText(key: translateKey(componentName: componentSelected?.pieceName ?? "", specification: componentSelected?.dropDown[specificationFocused == 0 ? 0 : 1].name ?? "")))
+                                .font(.custom("IosevkaCharon-Regular", size: 12))
+                                .foregroundStyle(.textos)
+                                .multilineTextAlignment(.center)
+                        } else {
+                            Text(componentViewModel.getSituationText(key: translateKey(componentName: componentSelected?.pieceName ?? "", specification: "")))
+                                .font(.custom("IosevkaCharon-Regular", size: 12))
+                                .foregroundStyle(.textos)
+                                .multilineTextAlignment(.center)
+                        }
                         
                         Spacer()
                     }
