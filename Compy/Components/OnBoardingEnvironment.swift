@@ -13,6 +13,8 @@ struct OnBoardingEnvironment<Content: View>: View {
     var hasSkipButton: Bool? = true
     @ViewBuilder let monitorContent: Content
     
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
+    
     var body: some View {
         if hasCompyMascot! {
             ZStack {
@@ -28,18 +30,20 @@ struct OnBoardingEnvironment<Content: View>: View {
                 .overlay{
                     if hasSkipButton! {
                         SkipButton()
-                            .padding(.top, 40)
-                            .padding(.trailing, 40)
+                            .padding(.top, isIphone ? 40 : 20)
+                            .padding(.trailing, isIphone ? 40 : 50)
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                             .ignoresSafeArea()
+                            .zIndex(999)
                     }
                 }
                 
-                Image(.compyMascote)
+                Image(isIphone ? .compyMascote : .compyIpadPequeno)
                     .padding(.leading, 20)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
                     .ignoresSafeArea()
             }
+            .toolbar(.hidden, for: .navigationBar)
         }
         else {
             VStack {
@@ -48,16 +52,23 @@ struct OnBoardingEnvironment<Content: View>: View {
                         monitorContent
                     )
             }
+            .toolbar(.hidden, for: .navigationBar)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .background(.fundoParede)
             .ignoresSafeArea()
+            .allowsTightening(false)
             .overlay{
                 if hasSkipButton! {
-                    SkipButton()
-                        .padding(.top, 40)
-                        .padding(.trailing, 40)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
-                        .ignoresSafeArea()
+                    VStack {
+                        HStack {
+                            Spacer()
+                            SkipButton()
+                                .padding(.top, isIphone ? 40 : 20)
+                                .padding(.trailing, isIphone ? 40 : 50)
+                        }
+                        Spacer()
+                    }
+                    .ignoresSafeArea()
                 }
             }
         }

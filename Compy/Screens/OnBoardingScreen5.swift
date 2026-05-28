@@ -11,6 +11,7 @@ struct OnBoardingScreen5: View {
     
     var pageNumber: String? = "5"
     var totalPages: String?
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
     
     var body: some View {
         OnBoardingEnvironment {
@@ -18,20 +19,20 @@ struct OnBoardingScreen5: View {
                 HStack {
                     VStack {
                         Text("Interaja com os componentes")
-                            .font(.custom("IosevkaCharon-Bold", size: 32))
+                            .font(.custom("IosevkaCharon-Bold", size: isIphone ? 32 : 64))
                             .foregroundStyle(.textos)
                             .multilineTextAlignment(.center)
                         
                         Spacer()
                         
                         Text("Os componentes disponíveis para personalização estarão destacados.")
-                            .font(.custom("IosevkaCharon-Regular", size: 15))
+                            .font(.custom("IosevkaCharon-Medium", size: isIphone ? 15 : 26))
                             .foregroundStyle(.textos)
                             .multilineTextAlignment(.center)
                             .padding(.bottom, 5)
                         
                         Text("**Selecione** algum componente e **personalize** suas especificações")
-                            .font(.custom("IosevkaCharon-Regular", size: 15))
+                            .font(.custom("IosevkaCharon-Medium", size: isIphone ? 15 : 26))
                             .foregroundStyle(.textos)
                             .multilineTextAlignment(.center)
                         
@@ -45,9 +46,10 @@ struct OnBoardingScreen5: View {
                 
                 Spacer()
                 
-                NavigationButtonContainer(pageNumber: pageNumber!)
+                NavigationButtonContainer(pageNumber: pageNumber!,nextRoute: .screenOnboarding6)
             }
-            .padding(50)
+            .padding(isIphone ? 50 : 100)
+            .padding(.bottom, isIphone ? 0 : 80)
         }
     }
 }

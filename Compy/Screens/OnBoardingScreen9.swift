@@ -12,18 +12,22 @@ struct OnBoardingScreen9: View {
     var pageNumber: String? = "9"
     var totalPages: String?
     
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
+    
     var body: some View {
         OnBoardingEnvironment(hasSkipButton: false) {
             VStack {
                 Text("Agora é com você!")
-                    .font(Font.custom("IosevkaCharon-Bold", size: 36))
+                    .font(Font.custom("IosevkaCharon-Bold", size: isIphone ? 36 : 64))
+                    .foregroundStyle(.textos)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(
-                NavigationButtonContainer(pageNumber: pageNumber!)
+                NavigationButtonContainer(pageNumber: pageNumber!,nextRoute: .mainScreen)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     .ignoresSafeArea()
-                    .padding(50)
+                    .padding(isIphone ? 50 : 100)
+                    .padding(.bottom, isIphone ? 0 : 80)
             )
         }
     }

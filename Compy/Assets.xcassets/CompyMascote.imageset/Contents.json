@@ -1,19 +1,28 @@
 {
   "images" : [
     {
-      "filename" : "Compy.png",
-      "idiom" : "universal",
+      "filename" : "Compy 1.png",
+      "idiom" : "iphone",
       "scale" : "1x"
     },
     {
-      "filename" : "Compy2x.png",
-      "idiom" : "universal",
+      "filename" : "Compy2x 1.png",
+      "idiom" : "iphone",
       "scale" : "2x"
     },
     {
-      "filename" : "Compy3x.png",
-      "idiom" : "universal",
+      "filename" : "Compy3x 1.png",
+      "idiom" : "iphone",
       "scale" : "3x"
+    },
+    {
+      "filename" : "CompyIpad.png",
+      "idiom" : "ipad",
+      "scale" : "1x"
+    },
+    {
+      "idiom" : "ipad",
+      "scale" : "2x"
     }
   ],
   "info" : {
