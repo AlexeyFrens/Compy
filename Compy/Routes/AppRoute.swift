@@ -5,7 +5,9 @@
 //  Created by Andre on 27/05/26.
 //
 import SwiftUI
+
 enum AppRoute: Hashable{
+    
     case screenOnboarding1
     case screenOnboarding2
     case screenOnboarding3
@@ -15,9 +17,11 @@ enum AppRoute: Hashable{
     case screenOnboarding7
     case screenOnboarding8
     case screenOnboarding9
+    case mainScreen
 }
 
 extension AppRoute: View {
+    
     var body: some View {
         switch self {
         case .screenOnboarding1:
@@ -38,6 +42,8 @@ extension AppRoute: View {
             OnBoardingScreen8()
         case .screenOnboarding9:
             OnBoardingScreen9()
+        case .mainScreen:
+            MainScreen()
         }
     
     }

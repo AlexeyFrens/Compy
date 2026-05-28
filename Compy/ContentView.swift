@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @EnvironmentObject private var routerManager: NavigationRouter
+    @Environment(ComponentViewModel.self) var componentViewModel
     
     var isIphone: Bool { UIDevice.current.userInterfaceIdiom == .phone }
 
@@ -47,6 +48,7 @@ struct ContentView: View {
             .background(.fundoEscuro)
             .navigationDestination(for: AppRoute.self) { route in
                 route
+                    .environment(componentViewModel)
             }
         }
     }
@@ -55,4 +57,5 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(NavigationRouter())
+        .environment(ComponentViewModel())
 }
