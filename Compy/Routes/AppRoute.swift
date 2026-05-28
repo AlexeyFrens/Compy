@@ -7,7 +7,6 @@
 import SwiftUI
 
 enum AppRoute: Hashable{
-    
     case screenOnboarding1
     case screenOnboarding2
     case screenOnboarding3
@@ -44,7 +43,8 @@ extension AppRoute: View {
             OnBoardingScreen9()
         case .mainScreen:
             MainScreen()
-        }
+}
+
     
     }
 }

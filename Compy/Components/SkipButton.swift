@@ -12,8 +12,8 @@ struct SkipButton: View {
     @EnvironmentObject private var routerManager : NavigationRouter
     var body: some View {
         Button(action: {
-                print("SkipButton pressionado, routes: \(routerManager.routes)")
-                routerManager.push(to: .screenOnboarding9)
+                print("SkipButton pressionado")
+//                routerManager.push(to: .screenOnboarding9)
         }, label: {
             HStack {
                 Text("Pular")
