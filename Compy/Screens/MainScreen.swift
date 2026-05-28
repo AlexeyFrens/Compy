@@ -54,6 +54,7 @@ struct MainScreen: View {
 
                         }
                     }
+                    .toolbar(.hidden, for: .navigationBar)
                 }
             }
         }

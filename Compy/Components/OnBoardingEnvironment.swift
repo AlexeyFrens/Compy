@@ -34,6 +34,7 @@ struct OnBoardingEnvironment<Content: View>: View {
                             .padding(.trailing, isIphone ? 40 : 50)
                             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topTrailing)
                             .ignoresSafeArea()
+                            .zIndex(999)
                     }
                 }
                 
@@ -42,6 +43,7 @@ struct OnBoardingEnvironment<Content: View>: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
                     .ignoresSafeArea()
             }
+            .toolbar(.hidden, for: .navigationBar)
         }
         else {
             VStack {
@@ -50,6 +52,7 @@ struct OnBoardingEnvironment<Content: View>: View {
                         monitorContent
                     )
             }
+            .toolbar(.hidden, for: .navigationBar)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
             .background(.fundoParede)
             .ignoresSafeArea()
