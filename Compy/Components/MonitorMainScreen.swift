@@ -12,6 +12,7 @@ struct MonitorMainScreen: View {
     
     @Environment(ComponentViewModel.self) var componentViewModel
     @State private var specificationFocused = 0
+    var isIphone = UIDevice.current.userInterfaceIdiom == .phone
     
     var componentSelected: ParameterBarModel {
         componentViewModel.pecas[componentViewModel.parameterBar.PecaIndex]
@@ -43,8 +44,9 @@ struct MonitorMainScreen: View {
                 HStack {
                     Image(systemName: "slider.horizontal.3")
                         .foregroundStyle(.textos)
+                        .font(.system(size: isIphone ? 0 : 30))
                     Text("Valores Gerais dos Componentes")
-                        .font(.custom("IosevkaCharon-Bold", size: 16))
+                        .font(.custom("IosevkaCharon-Bold", size: isIphone ? 16 : 24))
                         .foregroundStyle(.textos)
                 }
                 .padding(.horizontal, 26)
@@ -92,15 +94,15 @@ struct MonitorMainScreen: View {
                         if componentSelected.dropDown.count == 1 {
                             HStack {
                                 Text(componentSelected.dropDown[0].name)
-                                    .font(.custom("IosevkaCharon-Bold", size: 12))
+                                    .font(.custom("IosevkaCharon-Bold", size: isIphone ? 16 : 20))
                                     .foregroundStyle(.textos)
                                 Spacer()
                                 HStack {
                                     Text(componentSelected.dropDown[0].quantity.formatted())
-                                        .font(.custom("IosevkaCharon-Bold", size: 12))
+                                        .font(.custom("IosevkaCharon-Bold", size: isIphone ? 16 : 20))
                                         .foregroundStyle(.textos)
                                     Text(componentSelected.dropDown[0].un)
-                                        .font(.custom("IosevkaCharon-Bold", size: 12))
+                                        .font(.custom("IosevkaCharon-Bold", size: isIphone ? 16 : 20))
                                         .foregroundStyle(.textos)
                                 }
                             }
@@ -112,14 +114,14 @@ struct MonitorMainScreen: View {
                                 }) {
                                     VStack(spacing: 5) {
                                         Text(componentSelected.dropDown[0].name)
-                                            .font(.custom("IosevkaCharon-Bold", size: 12))
+                                            .font(.custom("IosevkaCharon-Bold", size: isIphone ? 16 : 20))
                                             .foregroundStyle(.textos)
                                         HStack {
                                             Text(componentSelected.dropDown[0].quantity.formatted())
-                                                .font(.custom("IosevkaCharon-Bold", size: 12))
+                                                .font(.custom("IosevkaCharon-Bold", size: isIphone ? 16 : 20))
                                                 .foregroundStyle(.textos)
                                             Text(componentSelected.dropDown[0].un)
-                                                .font(.custom("IosevkaCharon-Bold", size: 12))
+                                                .font(.custom("IosevkaCharon-Bold", size: isIphone ? 16 : 20))
                                                 .foregroundStyle(.textos)
                                         }
                                     }
@@ -141,14 +143,14 @@ struct MonitorMainScreen: View {
                                 }) {
                                     VStack(spacing: 5) {
                                         Text(componentSelected.dropDown[1].name)
-                                            .font(.custom("IosevkaCharon-Bold", size: 12))
+                                            .font(.custom("IosevkaCharon-Bold", size: isIphone ? 16 : 20))
                                             .foregroundStyle(.textos)
                                         HStack {
                                             Text(componentSelected.dropDown[1].quantity.formatted())
-                                                .font(.custom("IosevkaCharon-Bold", size: 12))
+                                                .font(.custom("IosevkaCharon-Bold", size: isIphone ? 16 : 20))
                                                 .foregroundStyle(.textos)
                                             Text(componentSelected.dropDown[1].un)
-                                                .font(.custom("IosevkaCharon-Bold", size: 12))
+                                                .font(.custom("IosevkaCharon-Bold", size: isIphone ? 16 : 20))
                                                 .foregroundStyle(.textos)
                                         }
                                     }
@@ -174,7 +176,7 @@ struct MonitorMainScreen: View {
                                 ? componentSelected.dropDown[specificationFocused].name
                                 : ""
                         )))
-                        .font(.custom("IosevkaCharon-Regular", size: 12))
+                        .font(.custom("IosevkaCharon-Regular", size: isIphone ? 12 : 16))
                         .foregroundStyle(.textos)
                         .multilineTextAlignment(.center)
                         
