@@ -15,7 +15,7 @@ struct NavigationButtonContainer: View {
     var isIphone = UIDevice.current.userInterfaceIdiom == .phone
     var nextRoute : AppRoute
     var body: some View {
-        if hasTwoButtons! {
+        if hasTwoButtons! || (totalPages != "3" && pageNumber != "1") {
             HStack {
                 NavigationButton(turnTo: "left"){
                     routerNavigation.navigateBack()
