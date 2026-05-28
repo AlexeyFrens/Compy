@@ -58,21 +58,99 @@ class ComponentViewModel {
         ),
     ]
     
-    var indexSituationText: [String: Int] = [
-        "processorSpeed": 0,
-        "processorCore": 0,
-        "videoCardVram": 0,
-        "videoCardClock": 0,
-        "storage": 0,
-        "memory": 0,
-        "powerSupply": 0
-    ]
+    func indexSituationText(specification: String) -> Int {
+        switch specification {
+        case "processorSpeed":
+            switch pecas[4].dropDown[0].quantity {
+            case 0:
+                return 0
+            case 1.6...2.5:
+                return 1
+            case 3.5...4:
+                return 2
+            default:
+                return 3
+            }
+        case "processorCore":
+            switch pecas[4].dropDown[1].quantity {
+            case 0:
+                return 0
+            case 2...4:
+                return 1
+            case 6...8:
+                return 2
+            default:
+                return 3
+            }
+        case "videoCardVram":
+            switch pecas[3].dropDown[0].quantity {
+            case 0:
+                return 0
+            case 6...8:
+                return 1
+            case 12...16:
+                return 2
+            default:
+                return 3
+            }
+        case "videoCardClock":
+            switch pecas[3].dropDown[1].quantity {
+            case 0:
+                return 0
+            case 1.2...1.6:
+                return 1
+            case 1.8...2.5:
+                return 2
+            default:
+                return 3
+            }
+        case "storage":
+            switch pecas[2].dropDown[0].quantity {
+            case 0:
+                return 0
+            case 256:
+                return 1
+            case 512:
+                return 2
+            default:
+                return 3
+            }
+        case "memory":
+            switch pecas[0].dropDown[0].quantity {
+            case 0:
+                return 0
+            case 4:
+                return 1
+            case 8:
+                return 2
+            case 16:
+                return 3
+            case 32:
+                return 4
+            default:
+                return 5
+            }
+        case "powerSupply":
+            switch pecas[1].dropDown[0].quantity {
+            case 0:
+                return 0
+            case 300...400:
+                return 1
+            case 500:
+                return 2
+            case 600...750:
+                return 3
+            default:
+                return 4
+            }
+        default:
+            return 0
+        }
+    }
     
     func getSituationText(key: String) -> String {
         
-        guard let currentIndex = indexSituationText[key] else {
-            return "Indice inválido"
-        }
+        let currentIndex = indexSituationText(specification: key)
         
         guard let textsList = situationTextViewModel.situationTexts[key] else {
             return "Não foi possível encontrar o array de textos"
