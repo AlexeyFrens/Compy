@@ -11,10 +11,21 @@ struct Gabinete: View {
     @Environment(ComponentViewModel.self) var component
     
     // destacar a peça selecionada com stroke verde agua
-    @State private var pecaSelecionada: String = ""
+    
     
     // var para rodar a animação quando peça for selecionada
     @State private var animarPulso = false
+    
+    var pecaSelecionada: String {
+          switch component.parameterBar.PecaIndex {
+          case 0: return "RAM"
+          case 1: return "Fonte"
+          case 2: return "HD"
+          case 3: return "Placa de Video"
+          case 4: return "Processador"
+          default: return ""
+          }
+      }
     
     var body: some View {
         // imagem do gabinete vazio é o pai dessa view, então a proporção das peças vão mudar em relação a ele
@@ -28,9 +39,8 @@ struct Gabinete: View {
                         
                         //PROCESSADOR
                         Button {
-                            component.parameterBar.PecaIndex = 0
+                            component.parameterBar.PecaIndex = 4
                             print("Você clicou no Processador")
-                            pecaSelecionada = "Processador"
                         } label: {
                             Image("Processador")
                                 .resizable()
@@ -49,9 +59,9 @@ struct Gabinete: View {
                         
                         //PLACA DE VIDEO
                         Button {
-                            component.parameterBar.PecaIndex = 1
+                            component.parameterBar.PecaIndex = 3
                             print("Você clicou na Placa de Video")
-                            pecaSelecionada = "Placa de Video"
+                         
                         } label: {
                             Image("PlacaDeVideo")
                                 .resizable()
@@ -70,7 +80,7 @@ struct Gabinete: View {
                         Button {
                             component.parameterBar.PecaIndex = 2
                             print("Voce clicou no HD")
-                            pecaSelecionada = "HD"
+                          
                         } label: {
                             Image("HD")
                                 .resizable()
@@ -87,9 +97,9 @@ struct Gabinete: View {
                         
                         //MEMÓRIA RAM
                         Button {
-                            component.parameterBar.PecaIndex = 3
+                            component.parameterBar.PecaIndex = 0
                             print("Voce clicou na Memória RAM")
-                            pecaSelecionada = "RAM"
+                          
                         } label: {
                             Image("MemoriaRam")
                                 .resizable()
@@ -106,9 +116,9 @@ struct Gabinete: View {
                         
                         //FONTE
                         Button {
-                            component.parameterBar.PecaIndex = 4
+                            component.parameterBar.PecaIndex = 1
                             print("Você clicou na Fonte")
-                            pecaSelecionada = "Fonte"
+                           
                         } label: {
                             Image("Fonte")
                                 .resizable()
