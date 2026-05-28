@@ -436,28 +436,26 @@
 import SwiftUI
 
 struct Gabinete: View {
-    
-    // Destacar a peça selecionada com stroke verde agua
-    @State private var pecaSelecionada: String = ""
-    
     // selecionar o índice do array com as infos sobre a peça
     @Environment(ComponentViewModel.self) var component
     
-    // MANTÉM: Variável necessária para rodar a animação
+    // destacar a peça selecionada com stroke verde agua
+    @State private var pecaSelecionada: String = ""
+    
+    // var para rodar a animação quando peça for selecionada
     @State private var animarPulso = false
     
     var body: some View {
-        // 1. A imagem base dita o tamanho real do componente
+        // imagem do gabinete vazio é o pai dessa view, então a proporção das peças vão mudar em relação a ele
         Image("GabineteVazio")
             .resizable()
             .scaledToFit()
             .overlay(
-                // 2. O GeometryReader dentro do overlay garante que as coordenadas
-                // mudem na mesma proporção do desenho do gabinete entre iPhone/iPad
+                //o GeometryReader dentro do overlay garante que as coordenadas das peças mudem junto com o gabinete
                 GeometryReader { geo in
                     ZStack {
                         
-                        // --- PROCESSADOR ---
+                        //PROCESSADOR
                         Button {
                             component.parameterBar.PecaIndex = 0
                             print("Você clicou no Processador")
@@ -468,8 +466,8 @@ struct Gabinete: View {
                                 .scaledToFit()
                                 .frame(width: geo.size.width * 0.12)
                                 // MUDANÇA: Efeitos aplicados direto na Imagem agora
-                                .scaleEffect(pecaSelecionada == "Processador" && animarPulso ? 1.08 : 1.0)
-                                .opacity(pecaSelecionada == "Processador" && animarPulso ? 1.0 : 0.7)
+                                .scaleEffect(pecaSelecionada == "Processador" && animarPulso ? 1.4 : 1.0)
+                                .opacity(pecaSelecionada == "Processador" && animarPulso ? 1.0 : 0.6)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
                                         .stroke(pecaSelecionada == "Processador" ? Color.cyan : Color.clear, lineWidth: 3)
@@ -489,7 +487,7 @@ struct Gabinete: View {
                                 .scaledToFit()
                                 .frame(width: geo.size.width * 0.66)
                                 // MUDANÇA: Efeitos aplicados direto na Imagem agora
-                                .scaleEffect(pecaSelecionada == "Placa de Video" && animarPulso ? 1.08 : 1.0)
+                                .scaleEffect(pecaSelecionada == "Placa de Video" && animarPulso ? 1.09 : 1.0)
                                 .opacity(pecaSelecionada == "Placa de Video" && animarPulso ? 1.0 : 0.7)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
@@ -510,7 +508,7 @@ struct Gabinete: View {
                                 .frame(width: geo.size.width * 0.14)
                                 // MUDANÇA: Efeitos aplicados direto na Imagem agora
                                 .scaleEffect(pecaSelecionada == "HD" && animarPulso ? 1.08 : 1.0)
-                                .opacity(pecaSelecionada == "HD" && animarPulso ? 1.0 : 0.7)
+                                .opacity(pecaSelecionada == "HD" && animarPulso ? 1.0 : 0.6)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
                                         .stroke(pecaSelecionada == "HD" ? Color.cyan : Color.clear, lineWidth: 3)
@@ -529,8 +527,8 @@ struct Gabinete: View {
                                 .scaledToFit()
                                 .frame(width: geo.size.width * 0.14)
                                 // MUDANÇA: Efeitos aplicados direto na Imagem agora
-                                .scaleEffect(pecaSelecionada == "RAM" && animarPulso ? 1.08 : 1.0)
-                                .opacity(pecaSelecionada == "RAM" && animarPulso ? 1.0 : 0.7)
+                                .scaleEffect(pecaSelecionada == "RAM" && animarPulso ? 1.1 : 1.0)
+                                .opacity(pecaSelecionada == "RAM" && animarPulso ? 1.0 : 0.6)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
                                         .stroke(pecaSelecionada == "RAM" ? Color.cyan : Color.clear, lineWidth: 3)
@@ -549,8 +547,8 @@ struct Gabinete: View {
                                 .scaledToFit()
                                 .frame(width: geo.size.width * 0.34)
                                 // MUDANÇA: Efeitos aplicados direto na Imagem agora
-                                .scaleEffect(pecaSelecionada == "Fonte" && animarPulso ? 1.08 : 1.0)
-                                .opacity(pecaSelecionada == "Fonte" && animarPulso ? 1.0 : 0.7)
+                                .scaleEffect(pecaSelecionada == "Fonte" && animarPulso ? 1.1 : 1.0)
+                                .opacity(pecaSelecionada == "Fonte" && animarPulso ? 1.0 : 0.6)
                                 .overlay(
                                     RoundedRectangle(cornerRadius: 8)
                                         .stroke(pecaSelecionada == "Fonte" ? Color.cyan : Color.clear, lineWidth: 3)
