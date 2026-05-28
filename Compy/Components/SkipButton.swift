@@ -13,7 +13,7 @@ struct SkipButton: View {
     var body: some View {
         Button(action: {
                 print("SkipButton pressionado")
-//                routerManager.push(to: .screenOnboarding9)
+                routerManager.push(to: .mainScreen)
         }, label: {
             HStack {
                 Text("Pular")
