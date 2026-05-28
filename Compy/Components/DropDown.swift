@@ -20,6 +20,7 @@ struct DropDown: View {
                 }
             }label:{
                 Text(component.pecas[component.parameterBar.PecaIndex].dropDown[component.parameterBar.SpecIndex].name)
+                    .foregroundStyle(.white)
                 Image(systemName: "chevron.up")
             }
             .padding(.horizontal,25)
@@ -27,7 +28,7 @@ struct DropDown: View {
 //            .background(Color.accent)
             .glassEffect()
             .clipShape(RoundedRectangle(cornerRadius: 5))
-            .foregroundStyle(.textos)
+            .foregroundStyle(.white)
             .font(Font.custom("IosevkaCharon-Bold", size: 14))
             .overlay{
                 if isActive {
@@ -44,7 +45,7 @@ struct DropDown: View {
                             }) {
                                 Text(specifications[i].name)
                                     .font(.custom("IosevkaCharon-Bold", size: 14))
-                                    .foregroundStyle(.textos)
+                                    .foregroundStyle(.white)
                             }
                             if i == 0{
                                 Divider()

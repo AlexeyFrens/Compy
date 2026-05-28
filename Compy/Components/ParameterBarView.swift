@@ -5,6 +5,8 @@
 //  Created by Andre on 25/05/26.
 //
 import SwiftUI
+import AVFoundation
+
 
 struct ParameterBarView: View {
     @Environment(ComponentViewModel.self) var component
@@ -14,6 +16,7 @@ struct ParameterBarView: View {
             // Botão Esquerda
             HStack{
                 Button(action: {
+                    vibrar()
                     withAnimation(.smooth){
                         component.parameterBar.voltar(totalPecas: component.pecas.count)
                     }
@@ -30,6 +33,7 @@ struct ParameterBarView: View {
                 // Botão Direita
                 
                 Button(action: {
+                    vibrar()
                     withAnimation(.smooth){
                         component.parameterBar.avancar(totalPecas: component.pecas.count)
                     }
@@ -51,6 +55,7 @@ struct ParameterBarView: View {
             Spacer()
             // Botão Decrementar
             Button(action: {
+                vibrar()
                 withAnimation(.bouncy){
                     
                     component.parameterBar.decrementar(componentViewModel: component)
@@ -70,6 +75,7 @@ struct ParameterBarView: View {
             .frame(width: 100)
             
             Button(action: {
+                vibrar()
                 withAnimation(.bouncy){
                     component.parameterBar.incrementar(componentViewModel: component)
                 }
@@ -87,6 +93,8 @@ struct ParameterBarView: View {
         //        .environment(barra)
     }
 }
+
+func vibrar(){ AudioServicesPlaySystemSound(1519) }
 
 #Preview {
     let cvm = ComponentViewModel()
