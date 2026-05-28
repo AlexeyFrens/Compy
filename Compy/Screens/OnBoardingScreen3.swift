@@ -36,7 +36,7 @@ struct OnBoardingScreen3: View {
                             Image(.monitorAmbienteOnBoarding)
                         }
                         
-                        NavigationButtonContainer(pageNumber: pageNumber!,nextRoute: .screenOnboarding4)
+                        NavigationButtonContainer(pageNumber: pageNumber!, totalPages: "9",nextRoute: .screenOnboarding4(isTutorial: false))
                             .padding(.horizontal, 25)
                     }
                 }

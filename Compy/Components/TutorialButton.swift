@@ -8,13 +8,16 @@ import SwiftUI
 
 struct TutorialButton: View {
     
+    @EnvironmentObject var routerNavigation: NavigationRouter
+    @Environment(ComponentViewModel.self) var componentViewModel
+    
     var body: some View {
         
         //o botão está chamando a tela 4 do OnBoarding
-        NavigationLink {
-            OnBoardingScreen4()
-        } label: {
-            Image("CompyTutorialImg")
+        Button(action: {
+            routerNavigation.push(to: .screenOnboarding4(isTutorial: true))
+        }) {
+            Image(.compyTutorialImg)
         }
     }
 }

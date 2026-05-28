@@ -11,11 +11,12 @@ struct NavigationButtonContainer: View {
     @EnvironmentObject var routerNavigation : NavigationRouter
     var hasTwoButtons: Bool? = true
     var pageNumber: String
-    var totalPages: String?
+    var totalPages: String
     var isIphone = UIDevice.current.userInterfaceIdiom == .phone
     var nextRoute : AppRoute
+    var isTutorial: Bool = false
     var body: some View {
-        if hasTwoButtons! || (totalPages != "3" && pageNumber != "1") {
+        if hasTwoButtons! || (isTutorial && Int(pageNumber)! - 3 != 1) {
             HStack {
                 NavigationButton(turnTo: "left"){
                     routerNavigation.navigateBack()
@@ -23,20 +24,26 @@ struct NavigationButtonContainer: View {
                 
                 Spacer()
                 
-                Text("\(pageNumber)/\(totalPages ?? "9")")
+                Text("\(isTutorial ? "\(Int(pageNumber)! - 3)" : "\(pageNumber)")/\(isTutorial ? "3" : "\(totalPages)")")
                     .font(Font.custom("IosevkaCharon-Regular", size: isIphone ? 12 : 32))
                     .foregroundStyle(.textos)
                 
                 Spacer()
                 
-                NavigationButton(turnTo: "right"){
-                    routerNavigation.push(to: nextRoute)
+                if isTutorial && Int(pageNumber)! - 3 == 3 {
+                    NavigationButton(turnTo: "right"){
+                        routerNavigation.push(to: .mainScreen)
+                    }
+                } else {
+                    NavigationButton(turnTo: "right"){
+                        routerNavigation.push(to: nextRoute)
+                    }
                 }
             }
         }
         else {
             ZStack {
-                Text("\(pageNumber)/\(totalPages ?? "9")")
+                Text("\(isTutorial ? "\(Int(pageNumber)! - 3)" : "\(pageNumber)")/\(isTutorial ? "3" : "\(totalPages)")")
                     .font(Font.custom("IosevkaCharon-Regular", size: isIphone ? 12 : 32))
                     .foregroundStyle(.textos)
                 

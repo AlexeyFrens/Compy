@@ -37,7 +37,7 @@ struct OnboardingScreen7: View {
                     Image(.onBoarding7)
                     
                 }
-                NavigationButtonContainer(pageNumber: pageNumber!,nextRoute: .screenOnboarding8)
+                NavigationButtonContainer(pageNumber: pageNumber!, totalPages: "9",nextRoute: .screenOnboarding8)
                 Spacer()
             }
             .padding(isIphone ? 50 : 100)

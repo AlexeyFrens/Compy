@@ -23,7 +23,7 @@ struct OnBoardingScreen9: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .overlay(
-                NavigationButtonContainer(pageNumber: pageNumber!,nextRoute: .mainScreen)
+                NavigationButtonContainer(pageNumber: pageNumber!, totalPages: "9",nextRoute: .mainScreen)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
                     .ignoresSafeArea()
                     .padding(isIphone ? 50 : 100)

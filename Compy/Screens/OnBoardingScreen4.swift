@@ -12,6 +12,7 @@ struct OnBoardingScreen4: View {
     var pageNumber: String? = "4"
     var totalPages: String?
     var isIphone = UIDevice.current.userInterfaceIdiom == .phone
+    var isTutorial: Bool = false
     
     var body: some View {
         OnBoardingEnvironment {
@@ -39,7 +40,7 @@ struct OnBoardingScreen4: View {
                     
                     Spacer()
                     
-                    NavigationButtonContainer(pageNumber: pageNumber!,nextRoute: .screenOnboarding5)
+                    NavigationButtonContainer(hasTwoButtons: isTutorial ? false : true, pageNumber: pageNumber!, totalPages: "9",nextRoute: .screenOnboarding5(isTutorial: isTutorial), isTutorial: isTutorial)
                     
                 }
                 .padding(50)
@@ -74,42 +75,16 @@ struct OnBoardingScreen4: View {
                         Image(.desktopOnBoarding)
                     }
                     
-                    NavigationButtonContainer(pageNumber: pageNumber!, nextRoute: .screenOnboarding5)
+                    NavigationButtonContainer(pageNumber: pageNumber!, totalPages: "9", nextRoute: .screenOnboarding5(isTutorial: isTutorial), isTutorial: isTutorial)
                     
                 }
                 .padding(isIphone ? 50 : 100)
                 .padding(.bottom, isIphone ? 0 : 80)
-                VStack{
-                    
-                    Spacer()
-                    
-                    Text ("Esse é o gabinete")
-                        .font(Font.custom("IosevkaCharon-Bold", size: 32))
-                        .foregroundStyle(.textos)
-                        .padding(5)
-                    
-                    Spacer()
-                    
-                    Image(.gabineteOnBoarding)
-                    
-                    Spacer ()
-                    
-                    Text ("É nele que as peças de hardware estarão para você manipular. Que tal darmos uma olhada mais de perto?")
-                        .lineLimit(nil)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .font(Font.custom("IosevkaCharon-Regular", size: 16))
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(.textos)
-                        .padding(5)
-                    
-                    Spacer()
-                    
-                    NavigationButtonContainer(pageNumber: pageNumber!,nextRoute: .screenOnboarding5)
                 }
             }
         }
     }
-}
+
 #Preview {
     OnBoardingScreen4()
 }

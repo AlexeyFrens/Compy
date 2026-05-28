@@ -12,6 +12,7 @@ struct OnBoardingScreen6: View {
     var pageNumber: String? = "6"
     var totalPages: String?
     var isIphone = UIDevice.current.userInterfaceIdiom == .phone
+    var isTutorial: Bool = false
     
     var body: some View {
         OnBoardingEnvironment {
@@ -39,7 +40,7 @@ struct OnBoardingScreen6: View {
                 
                 Spacer()
                 
-              NavigationButtonContainer(pageNumber: pageNumber!,nextRoute: .screenOnboarding7)
+              NavigationButtonContainer(pageNumber: pageNumber!, totalPages: "9",nextRoute: .screenOnboarding7, isTutorial: isTutorial)
             }
             .padding(isIphone ? 50 : 100)
             .padding(.bottom, isIphone ? 0 : 80)
