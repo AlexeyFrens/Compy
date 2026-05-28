@@ -134,10 +134,11 @@ struct MonitorMainScreen: View {
                                                 .foregroundStyle(.textos)
                                         }
                                     }
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 5)
+                                    .frame(maxWidth: .infinity, alignment: .center)
                                 })
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 5)
-                                .frame(maxWidth: .infinity, alignment: .center)
+                                .clipShape(Rectangle())
                                 .background(specificationFocused == 0 ? Color.accent : Color.clear)
                                 .cornerRadius(10)
                                 .overlay(
@@ -164,10 +165,11 @@ struct MonitorMainScreen: View {
                                                 .foregroundStyle(.textos)
                                         }
                                     }
+                                    .padding(.horizontal, 10)
+                                    .padding(.vertical, 5)
+                                    .frame(maxWidth: .infinity, alignment: .center)
                                 })
-                                .padding(.horizontal, 10)
-                                .padding(.vertical, 5)
-                                .frame(maxWidth: .infinity, alignment: .center)
+                                .clipShape(Rectangle())
                                 .background(specificationFocused == 1 ? Color.accent : Color.clear)
                                 .cornerRadius(10)
                                 .overlay(
