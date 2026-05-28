@@ -20,8 +20,10 @@ struct DropDown: View {
                 }
             }label:{
                 Text(component.pecas[component.parameterBar.PecaIndex].dropDown[component.parameterBar.SpecIndex].name)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.textos)
                 Image(systemName: "chevron.up")
+                    .foregroundStyle(.textos)
+                    
             }
             .padding(.horizontal,25)
             .padding(.vertical,2.5)
@@ -45,7 +47,7 @@ struct DropDown: View {
                             }) {
                                 Text(specifications[i].name)
                                     .font(.custom("IosevkaCharon-Bold", size: 14))
-                                    .foregroundStyle(.white)
+                                    .foregroundStyle(.textos)
                             }
                             if i == 0{
                                 Divider()

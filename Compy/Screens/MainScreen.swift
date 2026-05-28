@@ -35,7 +35,45 @@ struct MainScreen: View {
                 HStack(alignment: .bottom, spacing: 0) {
                     Gabinete()
                         .frame(width: geometry.size.width * 0.28)
-                    
+                    ZStack(alignment: .topTrailing) {
+                        Image("MonitorVazio")
+                            .resizable()
+                            .overlay(
+                                GeometryReader { monitorGeom in
+                                    Group {
+                                        if component.parameterBar.pecaFocada {
+                                            // ✅ Mostra a view focada na peça selecionada
+                                            MonitorMainScreenFocused(
+                                                componentSelected: component.pecas[component.parameterBar.PecaIndex],
+                                                specificationIndex: component.parameterBar.SpecIndex
+                                            )
+                                            .transition(.opacity)
+                                        } else {
+                                            
+                                            MonitorMainScreen()
+                                            .transition(.opacity)
+                                        }
+                                    }
+                                    .frame(
+                                        width: monitorGeom.size.width * 0.90,
+                                        height: monitorGeom.size.height * 0.70
+                                    )
+                                    .position(
+                                        x: monitorGeom.size.width / 2,
+                                        y: monitorGeom.size.height * 0.42
+                                    )
+                                    .animation(.easeInOut(duration: 0.3), value: component.parameterBar.pecaFocada)
+                                }
+                            )
+                            .clipped()
+                            .scaledToFit()
+
+                        FuncaoPecaButton(mostrarModal: $mostrarModalCustomizado)
+                            .padding(.top, 24)
+                            .padding(.trailing, 24)
+                            .frame(width: 58,height: 58)
+                    }
+                    .frame(width: geometry.size.width * 0.405)
 
                     // SOLUÇÃO: VStack com Spacer absorve o espaço fantasma do HStack
 //                    VStack(spacing: 0) {
@@ -64,35 +102,7 @@ struct MainScreen: View {
 //                    .frame(width: geometry.size.width * (sizeClass == .compact ? 0.45 : 0.405))
 
                     //deixa monitor embaixo do botao "!"
-                    ZStack(alignment: .topTrailing) {
-                        Image("MonitorVazio")
-                            .resizable()
-                            .overlay(
-                                GeometryReader { monitorGeom in
-                                    MonitorMainScreen()
-                                                                                .frame(
-                                            width: monitorGeom.size.width * 0.90,
-                                            height: monitorGeom.size.height * 0.70
-                                        )
-                                        .position(
-                                            x: monitorGeom.size.width / 2,
-                                            y: monitorGeom.size.height * 0.42
-                                        )
-                                        
-                                }
-                                    .clipped()
-                            )
-                        
-                            .scaledToFit()
-                        
-                        //puxando o botao
-                        FuncaoPecaButton(mostrarModal: $mostrarModalCustomizado)
-                            .padding(.top, 24)
-                            .padding(.trailing, 24)
-                    }
-                    //tamanho do monitor
-                    .frame(width: geometry.size.width * 0.405)
-
+                   
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
                 .offset(y: geometry.size.height * (sizeClass == .compact ? -0.08 : -0.01))
@@ -100,6 +110,7 @@ struct MainScreen: View {
 
                 // ParameterBarView posicionada livremente sem quebrar o HStack
                 ParameterBarView()
+                    .frame(maxWidth: geometry.size.width * 0.75)
                     .position(x: geometry.size.width / 2, y: geometry.size.height * 0.85)
                 
 
@@ -107,6 +118,9 @@ struct MainScreen: View {
                 TutorialButton()
                     .padding(.top, 18)
                     .padding(.trailing, 24)
+                VisaoGeralButton()
+                    .padding(.top,78)
+                    .padding(.trailing,15)
                 
                 //função if para mostrar o modal
                 if mostrarModalCustomizado {
@@ -154,21 +168,23 @@ struct MainScreen: View {
                     .transition(.scale.combined(with: .opacity)) // Efeito colapsar/surgir suave
                 }
             }
+            .toolbar(.hidden, for: .navigationBar)
             // animaçação para o modal
             .animation(.easeInOut(duration: 0.25), value: mostrarModalCustomizado)
         }
         .ignoresSafeArea()
+        
     }
     
     // func para buscar os dados do "about" pelo indice do array que está no ComponentViewModel
     private func obterPecaPorIndice() -> ParameterBarModel? {
         let indiceReal: Int
         switch component.parameterBar.PecaIndex {
-        case 0: indiceReal = 4
-        case 1: indiceReal = 3
+        case 0: indiceReal = 0
+        case 1: indiceReal = 1
         case 2: indiceReal = 2
-        case 3: indiceReal = 0
-        case 4: indiceReal = 1 
+        case 3: indiceReal = 3
+        case 4: indiceReal = 4
         default: return nil
         }
         if component.pecas.indices.contains(indiceReal) {

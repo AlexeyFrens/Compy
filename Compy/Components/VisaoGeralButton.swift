@@ -7,14 +7,15 @@
 import SwiftUI
 
 struct VisaoGeralButton: View {
-    
+    @Environment(ComponentViewModel.self) var component
+
     var body: some View {
         
         //o botão está chamando a tela 4 do OnBoarding
-        NavigationLink {
-        //colocar acesso para monitor
-        } label: {
-            Image("VisaoGeral")
+        Button(action:{
+            component.parameterBar.pecaFocada = false
+        }){
+            Image(.visaoGeral)
         }
     }
 }

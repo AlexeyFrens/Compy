@@ -6,6 +6,7 @@
 
 import SwiftUI
 
+
 struct Gabinete: View {
     // selecionar o índice do array com as infos sobre a peça
     @Environment(ComponentViewModel.self) var component
@@ -40,6 +41,7 @@ struct Gabinete: View {
                         //PROCESSADOR
                         Button {
                             component.parameterBar.PecaIndex = 4
+                            component.parameterBar.pecaFocada = true
                             print("Você clicou no Processador")
                         } label: {
                             Image("Processador")
@@ -60,6 +62,7 @@ struct Gabinete: View {
                         //PLACA DE VIDEO
                         Button {
                             component.parameterBar.PecaIndex = 3
+                            component.parameterBar.pecaFocada = true
                             print("Você clicou na Placa de Video")
                          
                         } label: {
@@ -79,6 +82,7 @@ struct Gabinete: View {
                         //Armazenamento HD
                         Button {
                             component.parameterBar.PecaIndex = 2
+                            component.parameterBar.pecaFocada = true
                             print("Voce clicou no HD")
                           
                         } label: {
@@ -98,6 +102,7 @@ struct Gabinete: View {
                         //MEMÓRIA RAM
                         Button {
                             component.parameterBar.PecaIndex = 0
+                            component.parameterBar.pecaFocada = true
                             print("Voce clicou na Memória RAM")
                           
                         } label: {
@@ -117,6 +122,7 @@ struct Gabinete: View {
                         //FONTE
                         Button {
                             component.parameterBar.PecaIndex = 1
+                            component.parameterBar.pecaFocada = true
                             print("Você clicou na Fonte")
                            
                         } label: {

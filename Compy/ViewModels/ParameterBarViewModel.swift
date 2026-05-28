@@ -15,6 +15,8 @@ class ParameterBarViewModel {
     var index = 0
     var SpecIndex = 0
     var PecaIndex = 0
+    var pecaFocada: Bool = false
+
     
     func avancar(totalPecas: Int) {
         SpecIndex = 0
