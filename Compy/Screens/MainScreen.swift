@@ -39,10 +39,9 @@ struct MainScreen: View {
                         Image("MonitorVazio")
                             .resizable()
                             .overlay(
-                                GeometryReader { monitorGeom in
+                               
                                     Group {
                                         if component.parameterBar.pecaFocada {
-                                            // ✅ Mostra a view focada na peça selecionada
                                             MonitorMainScreenFocused(
                                                 componentSelected: component.pecas[component.parameterBar.PecaIndex],
                                                 specificationIndex: component.parameterBar.SpecIndex
@@ -54,17 +53,10 @@ struct MainScreen: View {
                                             .transition(.opacity)
                                         }
                                     }
-                                    .frame(
-                                        width: monitorGeom.size.width * 0.90,
-                                        height: monitorGeom.size.height * 0.70
-                                    )
-                                    .position(
-                                        x: monitorGeom.size.width / 2,
-                                        y: monitorGeom.size.height * 0.42
-                                    )
+                                        .frame(maxWidth: 320,maxHeight: 150)
+                                   
                                     .animation(.easeInOut(duration: 0.3), value: component.parameterBar.pecaFocada)
-                                }
-                            )
+                                )
                             .clipped()
                             .scaledToFit()
 
