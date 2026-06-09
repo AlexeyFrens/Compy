@@ -84,7 +84,7 @@ struct MonitorMainScreen: View {
                             }
                         }
                     }
-                    .frame(maxWidth: geometry.size.width * 0.45)
+                    .frame(maxWidth: geometry.size.width * 0.45,maxHeight: .infinity)
                     
                     Rectangle()
                         .frame(maxWidth: 2, maxHeight: .infinity)
@@ -153,6 +153,7 @@ struct MonitorMainScreen: View {
                                                 .font(.custom("IosevkaCharon-Bold", size: isIphone ? 16 : 20))
                                                 .foregroundStyle(.textos)
                                         }
+                                        .frame(maxWidth:.infinity)
                                     }
                                 }
                                 .padding(.horizontal, 10)
@@ -182,8 +183,10 @@ struct MonitorMainScreen: View {
                         
                         Spacer()
                     }
+                    .frame(maxWidth: .infinity,maxHeight: .infinity)
                     .padding()
                 }
+                .frame(maxWidth:.infinity,maxHeight: .infinity)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.fundoMonitor)

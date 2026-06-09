@@ -28,6 +28,9 @@ struct OnBoardingScreen3: View {
                 
                 ZStack {
                     Image(.ambienteDeInteracao)
+                        .resizable()
+                        .frame(width: isIphone ? 500 : 1000)
+    
                     
                     VStack {
                         HStack(spacing: 30) {
